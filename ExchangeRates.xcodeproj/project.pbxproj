@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		E610C38E225A24FD0096F5A8 /* Lint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E610C38F225A24FD0096F5A8 /* Build configuration list for PBXAggregateTarget "Lint" */;
+			buildPhases = (
+				E610C392225A25100096F5A8 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Lint;
+			productName = Lint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		E610C368225A1F660096F5A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C367225A1F660096F5A8 /* AppDelegate.swift */; };
 		E610C36A225A1F660096F5A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C369225A1F660096F5A8 /* ViewController.swift */; };
@@ -13,6 +27,9 @@
 		E610C36F225A1F680096F5A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E610C36E225A1F680096F5A8 /* Assets.xcassets */; };
 		E610C372225A1F680096F5A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E610C370225A1F680096F5A8 /* LaunchScreen.storyboard */; };
 		E610C37D225A1F690096F5A8 /* ExchangeRatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C37C225A1F690096F5A8 /* ExchangeRatesTests.swift */; };
+		E610C399225A28B00096F5A8 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C398225A28B00096F5A8 /* String+Localized.swift */; };
+		E610C39B225A3F970096F5A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E610C39A225A3F970096F5A8 /* Localizable.strings */; };
+		E610C39D225A3FD40096F5A8 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C39C225A3FD40096F5A8 /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +40,13 @@
 			remoteGlobalIDString = E610C363225A1F660096F5A8;
 			remoteInfo = ExchangeRates;
 		};
+		E610C393225A252A0096F5A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E610C35C225A1F660096F5A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E610C38E225A24FD0096F5A8;
+			remoteInfo = Lint;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +56,16 @@
 		E610C36C225A1F660096F5A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E610C36E225A1F680096F5A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E610C371225A1F680096F5A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E610C373225A1F680096F5A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E610C378225A1F690096F5A8 /* ExchangeRatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExchangeRatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E610C37C225A1F690096F5A8 /* ExchangeRatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesTests.swift; sourceTree = "<group>"; };
 		E610C37E225A1F690096F5A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E610C388225A20140096F5A8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E610C38B225A20F90096F5A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E610C38D225A24740096F5A8 /* lint.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = lint.sh; sourceTree = "<group>"; };
+		E610C395225A263C0096F5A8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		E610C398225A28B00096F5A8 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		E610C39A225A3F970096F5A8 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		E610C39C225A3FD40096F5A8 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +89,11 @@
 		E610C35B225A1F660096F5A8 = {
 			isa = PBXGroup;
 			children = (
-				E610C366225A1F660096F5A8 /* ExchangeRates */,
-				E610C37B225A1F690096F5A8 /* ExchangeRatesTests */,
+				E610C388225A20140096F5A8 /* README.md */,
+				E610C395225A263C0096F5A8 /* .swiftlint.yml */,
+				E610C38C225A24740096F5A8 /* Scripts */,
+				E610C387225A20140096F5A8 /* Sources */,
+				E610C389225A20140096F5A8 /* Tests */,
 				E610C365225A1F660096F5A8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,26 +107,61 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E610C366225A1F660096F5A8 /* ExchangeRates */ = {
+		E610C387225A20140096F5A8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E610C397225A281C0096F5A8 /* Common */,
+				E610C396225A281C0096F5A8 /* Models */,
+				E610C38A225A20F90096F5A8 /* Supporting files */,
 				E610C367225A1F660096F5A8 /* AppDelegate.swift */,
 				E610C369225A1F660096F5A8 /* ViewController.swift */,
 				E610C36B225A1F660096F5A8 /* Main.storyboard */,
 				E610C36E225A1F680096F5A8 /* Assets.xcassets */,
 				E610C370225A1F680096F5A8 /* LaunchScreen.storyboard */,
-				E610C373225A1F680096F5A8 /* Info.plist */,
 			);
-			path = ExchangeRates;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		E610C37B225A1F690096F5A8 /* ExchangeRatesTests */ = {
+		E610C389225A20140096F5A8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				E610C37C225A1F690096F5A8 /* ExchangeRatesTests.swift */,
 				E610C37E225A1F690096F5A8 /* Info.plist */,
 			);
-			path = ExchangeRatesTests;
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		E610C38A225A20F90096F5A8 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				E610C38B225A20F90096F5A8 /* Info.plist */,
+				E610C39A225A3F970096F5A8 /* Localizable.strings */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		E610C38C225A24740096F5A8 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				E610C38D225A24740096F5A8 /* lint.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		E610C396225A281C0096F5A8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E610C39C225A3FD40096F5A8 /* Currency.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E610C397225A281C0096F5A8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E610C398225A28B00096F5A8 /* String+Localized.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +178,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E610C394225A252A0096F5A8 /* PBXTargetDependency */,
 			);
 			name = ExchangeRates;
 			productName = ExchangeRates;
@@ -142,7 +211,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = Bekitzur;
+				ORGANIZATIONNAME = Revolut;
 				TargetAttributes = {
 					E610C363225A1F660096F5A8 = {
 						CreatedOnToolsVersion = 10.2;
@@ -150,6 +219,9 @@
 					E610C377225A1F690096F5A8 = {
 						CreatedOnToolsVersion = 10.2;
 						TestTargetID = E610C363225A1F660096F5A8;
+					};
+					E610C38E225A24FD0096F5A8 = {
+						CreatedOnToolsVersion = 10.2;
 					};
 				};
 			};
@@ -168,6 +240,7 @@
 			targets = (
 				E610C363225A1F660096F5A8 /* ExchangeRates */,
 				E610C377225A1F690096F5A8 /* ExchangeRatesTests */,
+				E610C38E225A24FD0096F5A8 /* Lint */,
 			);
 		};
 /* End PBXProject section */
@@ -178,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E610C372225A1F680096F5A8 /* LaunchScreen.storyboard in Resources */,
+				E610C39B225A3F970096F5A8 /* Localizable.strings in Resources */,
 				E610C36F225A1F680096F5A8 /* Assets.xcassets in Resources */,
 				E610C36D225A1F660096F5A8 /* Main.storyboard in Resources */,
 			);
@@ -192,11 +266,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E610C392225A25100096F5A8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/Scripts/lint.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E610C360225A1F660096F5A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E610C39D225A3FD40096F5A8 /* Currency.swift in Sources */,
+				E610C399225A28B00096F5A8 /* String+Localized.swift in Sources */,
 				E610C36A225A1F660096F5A8 /* ViewController.swift in Sources */,
 				E610C368225A1F660096F5A8 /* AppDelegate.swift in Sources */,
 			);
@@ -217,6 +313,11 @@
 			isa = PBXTargetDependency;
 			target = E610C363225A1F660096F5A8 /* ExchangeRates */;
 			targetProxy = E610C379225A1F690096F5A8 /* PBXContainerItemProxy */;
+		};
+		E610C394225A252A0096F5A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E610C38E225A24FD0096F5A8 /* Lint */;
+			targetProxy = E610C393225A252A0096F5A8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -362,13 +463,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MUQLCT9R7S;
-				INFOPLIST_FILE = ExchangeRates/Info.plist;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_SHADOW = YES;
+				INFOPLIST_FILE = "Sources/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.revolut.ExchangeRates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -380,13 +484,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MUQLCT9R7S;
-				INFOPLIST_FILE = ExchangeRates/Info.plist;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_SHADOW = YES;
+				INFOPLIST_FILE = "Sources/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.revolut.ExchangeRates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -399,7 +506,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MUQLCT9R7S;
-				INFOPLIST_FILE = ExchangeRatesTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -420,7 +527,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MUQLCT9R7S;
-				INFOPLIST_FILE = ExchangeRatesTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -431,6 +538,24 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExchangeRates.app/ExchangeRates";
+			};
+			name = Release;
+		};
+		E610C390225A24FD0096F5A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MUQLCT9R7S;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E610C391225A24FD0096F5A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MUQLCT9R7S;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -460,6 +585,15 @@
 			buildConfigurations = (
 				E610C385225A1F690096F5A8 /* Debug */,
 				E610C386225A1F690096F5A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E610C38F225A24FD0096F5A8 /* Build configuration list for PBXAggregateTarget "Lint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E610C390225A24FD0096F5A8 /* Debug */,
+				E610C391225A24FD0096F5A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
