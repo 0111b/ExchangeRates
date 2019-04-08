@@ -46,6 +46,7 @@
 		E610C3D0225B757F0096F5A8 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3CE225B757E0096F5A8 /* String+Localized.swift */; };
 		E610C3D1225B757F0096F5A8 /* URL+StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3CF225B757E0096F5A8 /* URL+StaticString.swift */; };
 		E610C3D3225B758E0096F5A8 /* Timer+Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3D2225B758E0096F5A8 /* Timer+Observable.swift */; };
+		E610C3D5225B7AA40096F5A8 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3D4225B7AA40096F5A8 /* ReusableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		E610C3CE225B757E0096F5A8 /* String+Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		E610C3CF225B757E0096F5A8 /* URL+StaticString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+StaticString.swift"; sourceTree = "<group>"; };
 		E610C3D2225B758E0096F5A8 /* Timer+Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Observable.swift"; sourceTree = "<group>"; };
+		E610C3D4225B7AA40096F5A8 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,8 +263,9 @@
 		E610C3CD225B757E0096F5A8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E610C3CE225B757E0096F5A8 /* String+Localized.swift */,
 				E610C3CF225B757E0096F5A8 /* URL+StaticString.swift */,
+				E610C3D4225B7AA40096F5A8 /* ReusableCell.swift */,
+				E610C3CE225B757E0096F5A8 /* String+Localized.swift */,
 				E610C3D2225B758E0096F5A8 /* Timer+Observable.swift */,
 			);
 			path = Extensions;
@@ -400,6 +403,7 @@
 				E610C3C8225B55FC0096F5A8 /* Disposable.swift in Sources */,
 				E610C3A8225A55980096F5A8 /* NetworkDataFetcher.swift in Sources */,
 				E610C39D225A3FD40096F5A8 /* Currency.swift in Sources */,
+				E610C3D5225B7AA40096F5A8 /* ReusableCell.swift in Sources */,
 				E610C3AE225A58810096F5A8 /* BasicNetworkFetcher.swift in Sources */,
 				E610C39F225A477A0096F5A8 /* CurrencyPair.swift in Sources */,
 				E610C3C1225B47160096F5A8 /* UserPreferences.swift in Sources */,
