@@ -10,9 +10,7 @@ import UIKit
 
 class ExchangeRateListViewController: UIViewController {
     private lazy var service: ExchangeRateServiceProtocol = {
-        //swiftlint:disable:next force_unwrapping
-        let url = URL(string: "https://europe-west1-revolut-230009.cloudfunctions.net")!
-        return ExchangeRateService(baseURL: url)
+        return ExchangeRateService(config: ApplicationConfig.current)
     }()
 
     override func viewDidLoad() {

@@ -9,7 +9,7 @@
 import Foundation
 
 /// URLRequest builder
-class HTTPRequest {
+open class HTTPRequest {
 
     /// HTTP method definitions.
     ///

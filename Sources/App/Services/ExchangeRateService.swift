@@ -14,8 +14,8 @@ protocol ExchangeRateServiceProtocol {
 }
 
 final class ExchangeRateService: ExchangeRateServiceProtocol {
-    init(baseURL: URL, fetcher: NetworkDataFetcher = BasicNetworkFetcher()) {
-        self.baseURL = baseURL
+    init(config: NetworkConfig, fetcher: NetworkDataFetcher = BasicNetworkFetcher()) {
+        self.baseURL = config.apiBaseURL
         self.fetcher = fetcher
     }
 
