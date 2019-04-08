@@ -47,9 +47,9 @@ class Observable<Value> {
         }
     }
 
-    private let semaphore = DispatchSemaphore(value: 1)
-    fileprivate func lock() { semaphore.wait() }
-    fileprivate func unlock() { semaphore.signal() }
+    private var mutex = os_unfair_lock()
+    fileprivate func lock() { os_unfair_lock_lock(&mutex) }
+    fileprivate func unlock() { os_unfair_lock_unlock(&mutex) }
     private var observations: [UUID: (Observer, DispatchQueue?)] = [:]
 }
 

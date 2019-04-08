@@ -6,3 +6,4 @@ The sample app
 network activity
 observable
 log
+ipad
