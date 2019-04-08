@@ -25,3 +25,11 @@ struct ExchangeRate {
     /// Destination currency
     var destination: Currency { return currencies.second }
 }
+
+extension ExchangeRate: Hashable {}
+
+extension ExchangeRate: CustomStringConvertible {
+    var description: String {
+        return "Rate<\(source.description) = \(rate.description) \(destination.description)>"
+    }
+}

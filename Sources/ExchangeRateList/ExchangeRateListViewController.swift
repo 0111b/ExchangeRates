@@ -9,24 +9,10 @@
 import UIKit
 
 final class ExchangeRateListViewController: UIViewController {
-    private lazy var service: ExchangeRateServiceProtocol = {
-        return ExchangeRateService(config: ApplicationConfig.current)
-    }()
+    private let viewModel = ExchangeRateListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            let usd = try CurrencyFactory.make(from: "USD")
-            let gbp = try CurrencyFactory.make(from: "GBP")
-            let pairs = [
-                CurrencyPair(first: usd, second: gbp),
-                CurrencyPair(first: gbp, second: usd)
-            ]
-            service.getRates(for: pairs) { result in
-                print(result)
-            }
-        } catch {
-            print(error)
-        }
+        viewModel.didLoadView()
     }
 }

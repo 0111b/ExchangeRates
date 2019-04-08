@@ -52,5 +52,10 @@ extension CurrencyPair: Codable {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
     }
+}
 
+extension CurrencyPair: CustomStringConvertible {
+    var description: String {
+        return "Pair<\(first.description):\(second.description)>"
+    }
 }
