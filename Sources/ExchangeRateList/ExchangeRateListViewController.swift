@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ExchangeRateListViewController.swift
 //  ExchangeRates
 //
 //  Created by Alexandr Goncharov on 07/04/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ExchangeRateListViewController: UIViewController {
     private lazy var service: ExchangeRateServiceProtocol = {
         //swiftlint:disable:next force_unwrapping
         let url = URL(string: "https://europe-west1-revolut-230009.cloudfunctions.net")!
