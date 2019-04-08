@@ -16,8 +16,7 @@ enum ApplicationConfig {
     var apiBaseURL: URL {
         switch self {
         case .develop:
-            //swiftlint:disable:next force_unwrapping
-            return URL(string: "https://europe-west1-revolut-230009.cloudfunctions.net")!
+            return URL(staticString: "https://europe-west1-revolut-230009.cloudfunctions.net")
         }
     }
 }

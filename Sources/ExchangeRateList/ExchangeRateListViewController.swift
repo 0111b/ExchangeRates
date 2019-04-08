@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExchangeRateListViewController: UIViewController {
+final class ExchangeRateListViewController: UIViewController {
     private lazy var service: ExchangeRateServiceProtocol = {
         return ExchangeRateService(config: ApplicationConfig.current)
     }()
