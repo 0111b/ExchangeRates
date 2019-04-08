@@ -9,8 +9,9 @@
 import Foundation
 
 class Observable<Value> {
-    init(value: Value) {
+    init(value: Value, onDispose: @escaping () -> Void = {}) {
         self._value = value
+        self.onDispose = onDispose
     }
 
     typealias Observer = (Value) -> Void
@@ -29,6 +30,7 @@ class Observable<Value> {
         observer(value)
         return Disposable { [weak self] in
             self?.observations.removeValue(forKey: id)
+            self?.onDispose()
         }
     }
 
@@ -47,6 +49,11 @@ class Observable<Value> {
         }
     }
 
+    deinit {
+        onDispose()
+    }
+
+    private let onDispose: () -> Void
     private var mutex = os_unfair_lock()
     fileprivate func lock() { os_unfair_lock_lock(&mutex) }
     fileprivate func unlock() { os_unfair_lock_unlock(&mutex) }
