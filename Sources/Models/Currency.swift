@@ -9,14 +9,17 @@
 import Foundation
 
 /// Currency description
-protocol Currency {
+protocol Currency: CustomStringConvertible {
     var code: String { get }
     var symbol: String? { get }
     var name: String? { get }
 }
 
+extension Currency {
+    var description: String { return code }
+}
 /// Currencies namespace
-enum Currencies {
+enum CurrencyFactory {
 
     /// Factory method for creating `Currency`
     ///
@@ -48,7 +51,7 @@ enum Currencies {
     }
 
     /// Subset of the ISO 4217 currencies supported by the current locale
-    final class ISOCurrency: Currency {
+    private final class ISOCurrency: Currency {
         let code: String
         let symbol: String?
         let name: String?

@@ -30,6 +30,14 @@
 		E610C399225A28B00096F5A8 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C398225A28B00096F5A8 /* String+Localized.swift */; };
 		E610C39B225A3F970096F5A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E610C39A225A3F970096F5A8 /* Localizable.strings */; };
 		E610C39D225A3FD40096F5A8 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C39C225A3FD40096F5A8 /* Currency.swift */; };
+		E610C39F225A477A0096F5A8 /* CurrencyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C39E225A477A0096F5A8 /* CurrencyPair.swift */; };
+		E610C3A1225A4B170096F5A8 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3A0225A4B170096F5A8 /* ExchangeRate.swift */; };
+		E610C3A8225A55980096F5A8 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3A7225A55980096F5A8 /* NetworkDataFetcher.swift */; };
+		E610C3AA225A56AE0096F5A8 /* DataFetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3A9225A56AE0096F5A8 /* DataFetchError.swift */; };
+		E610C3AC225A575D0096F5A8 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3AB225A575D0096F5A8 /* Cancellable.swift */; };
+		E610C3AE225A58810096F5A8 /* BasicNetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3AD225A58810096F5A8 /* BasicNetworkFetcher.swift */; };
+		E610C3B0225B23FB0096F5A8 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3AF225B23FB0096F5A8 /* HTTPRequest.swift */; };
+		E610C3B2225B24B60096F5A8 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3B1225B24B60096F5A8 /* ExchangeRateService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +74,14 @@
 		E610C398225A28B00096F5A8 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		E610C39A225A3F970096F5A8 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E610C39C225A3FD40096F5A8 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		E610C39E225A477A0096F5A8 /* CurrencyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPair.swift; sourceTree = "<group>"; };
+		E610C3A0225A4B170096F5A8 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
+		E610C3A7225A55980096F5A8 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
+		E610C3A9225A56AE0096F5A8 /* DataFetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchError.swift; sourceTree = "<group>"; };
+		E610C3AB225A575D0096F5A8 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
+		E610C3AD225A58810096F5A8 /* BasicNetworkFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicNetworkFetcher.swift; sourceTree = "<group>"; };
+		E610C3AF225B23FB0096F5A8 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		E610C3B1225B24B60096F5A8 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,11 +126,14 @@
 		E610C387225A20140096F5A8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E610C3B3225B3BF80096F5A8 /* Core */,
+				E610C3A4225A555E0096F5A8 /* Networking */,
 				E610C397225A281C0096F5A8 /* Common */,
 				E610C396225A281C0096F5A8 /* Models */,
 				E610C38A225A20F90096F5A8 /* Supporting files */,
 				E610C367225A1F660096F5A8 /* AppDelegate.swift */,
 				E610C369225A1F660096F5A8 /* ViewController.swift */,
+				E610C3B1225B24B60096F5A8 /* ExchangeRateService.swift */,
 				E610C36B225A1F660096F5A8 /* Main.storyboard */,
 				E610C36E225A1F680096F5A8 /* Assets.xcassets */,
 				E610C370225A1F680096F5A8 /* LaunchScreen.storyboard */,
@@ -152,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				E610C39C225A3FD40096F5A8 /* Currency.swift */,
+				E610C39E225A477A0096F5A8 /* CurrencyPair.swift */,
+				E610C3A0225A4B170096F5A8 /* ExchangeRate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -159,9 +180,28 @@
 		E610C397225A281C0096F5A8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E610C3AB225A575D0096F5A8 /* Cancellable.swift */,
 				E610C398225A28B00096F5A8 /* String+Localized.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		E610C3A4225A555E0096F5A8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E610C3AF225B23FB0096F5A8 /* HTTPRequest.swift */,
+				E610C3A9225A56AE0096F5A8 /* DataFetchError.swift */,
+				E610C3A7225A55980096F5A8 /* NetworkDataFetcher.swift */,
+				E610C3AD225A58810096F5A8 /* BasicNetworkFetcher.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		E610C3B3225B3BF80096F5A8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,9 +331,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E610C3B2225B24B60096F5A8 /* ExchangeRateService.swift in Sources */,
+				E610C3AC225A575D0096F5A8 /* Cancellable.swift in Sources */,
+				E610C3A8225A55980096F5A8 /* NetworkDataFetcher.swift in Sources */,
 				E610C39D225A3FD40096F5A8 /* Currency.swift in Sources */,
 				E610C399225A28B00096F5A8 /* String+Localized.swift in Sources */,
+				E610C3AE225A58810096F5A8 /* BasicNetworkFetcher.swift in Sources */,
+				E610C39F225A477A0096F5A8 /* CurrencyPair.swift in Sources */,
 				E610C36A225A1F660096F5A8 /* ViewController.swift in Sources */,
+				E610C3AA225A56AE0096F5A8 /* DataFetchError.swift in Sources */,
+				E610C3B0225B23FB0096F5A8 /* HTTPRequest.swift in Sources */,
+				E610C3A1225A4B170096F5A8 /* ExchangeRate.swift in Sources */,
 				E610C368225A1F660096F5A8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

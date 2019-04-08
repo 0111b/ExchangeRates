@@ -9,10 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private lazy var service: ExchangeRateServiceProtocol = {
+        //swiftlint:disable:next force_unwrapping
+        let url = URL(string: "https://europe-west1-revolut-230009.cloudfunctions.net")!
+        return ExchangeRateService(baseURL: url)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        print(Currencies.Error.invalidCode("1").localizedDescription)
+        do {
+            let usd = try CurrencyFactory.make(from: "USD")
+            let gbp = try CurrencyFactory.make(from: "GBP")
+            let pairs = [
+                CurrencyPair(first: usd, second: gbp),
+                CurrencyPair(first: gbp, second: usd)
+            ]
+            service.getRates(for: pairs) { result in
+                print(result)
+            }
+        } catch {
+            print(error)
+        }
     }
 }
