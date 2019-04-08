@@ -22,8 +22,8 @@ extension CurrencyPair {
         guard rawValue.count == 6 else {
             throw FormatError(value: rawValue)
         }
-        first = try CurrencyFactory.make(from: String(rawValue.prefix(3)))
-        second = try CurrencyFactory.make(from: String(rawValue.suffix(3)))
+        first = try CurrencyFactory.make(from: Currency.Code(rawValue.prefix(3)))
+        second = try CurrencyFactory.make(from: Currency.Code(rawValue.suffix(3)))
     }
 }
 

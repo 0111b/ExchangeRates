@@ -10,7 +10,9 @@ import Foundation
 
 /// Currency description
 protocol Currency: CustomStringConvertible {
-    var code: String { get }
+    typealias Code = String
+
+    var code: Code { get }
     var symbol: String? { get }
     var name: String? { get }
 }
@@ -26,7 +28,7 @@ enum CurrencyFactory {
     /// - Parameter code: currency code
     /// - Returns: new currency instance
     /// - Throws: `Currencies.Error.invalidCode`
-    static func make(from code: String) throws -> Currency {
+    static func make(from code: Currency.Code) throws -> Currency {
         switch code {
         // ISO currency
         case let isoCode where Locale.isoCurrencyCodes.contains(code):
@@ -41,7 +43,7 @@ enum CurrencyFactory {
     ///
     /// - invalidCode: invalid currency code passed
     enum Error: Swift.Error, LocalizedError {
-        case invalidCode(String)
+        case invalidCode(Currency.Code)
 
         var errorDescription: String? {
             switch self {
@@ -52,7 +54,7 @@ enum CurrencyFactory {
 
     /// Subset of the ISO 4217 currencies supported by the current locale
     private final class ISOCurrency: Currency {
-        let code: String
+        let code: Currency.Code
         let symbol: String?
         let name: String?
 

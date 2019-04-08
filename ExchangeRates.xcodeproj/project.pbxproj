@@ -47,6 +47,10 @@
 		E610C3D1225B757F0096F5A8 /* URL+StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3CF225B757E0096F5A8 /* URL+StaticString.swift */; };
 		E610C3D3225B758E0096F5A8 /* Timer+Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3D2225B758E0096F5A8 /* Timer+Observable.swift */; };
 		E610C3D5225B7AA40096F5A8 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3D4225B7AA40096F5A8 /* ReusableCell.swift */; };
+		E610C3D8225B7B700096F5A8 /* CurrencySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3D7225B7B700096F5A8 /* CurrencySelectorViewController.swift */; };
+		E610C3DA225B7DA90096F5A8 /* CurrencySelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3D9225B7DA90096F5A8 /* CurrencySelectorCell.swift */; };
+		E63F7872225B862200E87AF3 /* CurrencySelectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E63F7871225B862200E87AF3 /* CurrencySelectorCell.xib */; };
+		E63F7874225B8B9100E87AF3 /* AddCurrencyPairFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63F7873225B8B9100E87AF3 /* AddCurrencyPairFlow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +104,10 @@
 		E610C3CF225B757E0096F5A8 /* URL+StaticString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+StaticString.swift"; sourceTree = "<group>"; };
 		E610C3D2225B758E0096F5A8 /* Timer+Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Observable.swift"; sourceTree = "<group>"; };
 		E610C3D4225B7AA40096F5A8 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
+		E610C3D7225B7B700096F5A8 /* CurrencySelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectorViewController.swift; sourceTree = "<group>"; };
+		E610C3D9225B7DA90096F5A8 /* CurrencySelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectorCell.swift; sourceTree = "<group>"; };
+		E63F7871225B862200E87AF3 /* CurrencySelectorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencySelectorCell.xib; sourceTree = "<group>"; };
+		E63F7873225B8B9100E87AF3 /* AddCurrencyPairFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyPairFlow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +155,7 @@
 				E610C3B3225B3BF80096F5A8 /* Core */,
 				E610C3B4225B3C540096F5A8 /* App */,
 				E610C3B6225B3CDF0096F5A8 /* ExchangeRateList */,
+				E610C3D6225B7B570096F5A8 /* CurrencySelector */,
 				E610C38A225A20F90096F5A8 /* Supporting files */,
 				E610C36B225A1F660096F5A8 /* Main.storyboard */,
 				E610C370225A1F680096F5A8 /* LaunchScreen.storyboard */,
@@ -271,6 +280,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E610C3D6225B7B570096F5A8 /* CurrencySelector */ = {
+			isa = PBXGroup;
+			children = (
+				E63F7873225B8B9100E87AF3 /* AddCurrencyPairFlow.swift */,
+				E610C3D7225B7B700096F5A8 /* CurrencySelectorViewController.swift */,
+				E610C3D9225B7DA90096F5A8 /* CurrencySelectorCell.swift */,
+				E63F7871225B862200E87AF3 /* CurrencySelectorCell.xib */,
+			);
+			path = CurrencySelector;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -361,6 +381,7 @@
 				E610C39B225A3F970096F5A8 /* Localizable.strings in Resources */,
 				E610C36F225A1F680096F5A8 /* Assets.xcassets in Resources */,
 				E610C36D225A1F660096F5A8 /* Main.storyboard in Resources */,
+				E63F7872225B862200E87AF3 /* CurrencySelectorCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +423,7 @@
 				E610C3B2225B24B60096F5A8 /* ExchangeRateService.swift in Sources */,
 				E610C3C8225B55FC0096F5A8 /* Disposable.swift in Sources */,
 				E610C3A8225A55980096F5A8 /* NetworkDataFetcher.swift in Sources */,
+				E63F7874225B8B9100E87AF3 /* AddCurrencyPairFlow.swift in Sources */,
 				E610C39D225A3FD40096F5A8 /* Currency.swift in Sources */,
 				E610C3D5225B7AA40096F5A8 /* ReusableCell.swift in Sources */,
 				E610C3AE225A58810096F5A8 /* BasicNetworkFetcher.swift in Sources */,
@@ -410,6 +432,7 @@
 				E610C36A225A1F660096F5A8 /* ExchangeRateListViewController.swift in Sources */,
 				E610C3AA225A56AE0096F5A8 /* DataFetchError.swift in Sources */,
 				E610C3D3225B758E0096F5A8 /* Timer+Observable.swift in Sources */,
+				E610C3D8225B7B700096F5A8 /* CurrencySelectorViewController.swift in Sources */,
 				E610C3B0225B23FB0096F5A8 /* HTTPRequest.swift in Sources */,
 				E610C3BD225B45450096F5A8 /* UserDefaultsStorage.swift in Sources */,
 				E610C3C6225B55EF0096F5A8 /* Observable.swift in Sources */,
@@ -419,6 +442,7 @@
 				E610C3D1225B757F0096F5A8 /* URL+StaticString.swift in Sources */,
 				E610C368225A1F660096F5A8 /* AppDelegate.swift in Sources */,
 				E610C3BB225B44C00096F5A8 /* KeyValueStorage.swift in Sources */,
+				E610C3DA225B7DA90096F5A8 /* CurrencySelectorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
