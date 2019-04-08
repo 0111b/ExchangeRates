@@ -2,3 +2,7 @@
 
 The sample app
 
+# TODO:
+network activity
+observable
+log

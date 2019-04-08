@@ -17,7 +17,7 @@ final class BasicNetworkFetcher: NetworkDataFetcher {
     }
 
     private let session: URLSession
-    private lazy var processingQueue = DispatchQueue(label: "com.revolut.BasicNetworkFetcher.Processing",
+    private lazy var processingQueue = DispatchQueue(label: "com.revolut.BasicNetworkFetcher.processing",
                                                      qos: .userInitiated,
                                                      attributes: .concurrent)
     private let completionQueue: DispatchQueue
