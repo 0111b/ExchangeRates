@@ -13,11 +13,14 @@ final class ExchangeRateListViewModel {
         self.service = service
     }
 
-    var service: ExchangeRateServiceProtocol
     let disposeBag = DisposeBag()
+    var service: ExchangeRateServiceProtocol
+    private var refreshDisposable = Disposable.empty
 
     private let ratesRelay = MutableObservable<[ExchangeRate]>(value: [])
     var rates: Observable<[ExchangeRate]> { return ratesRelay.asObservable() }
+    private let errorRelay = MutableObservable<DataFetchError?>(value: nil)
+    var error: Observable<DataFetchError?> { return errorRelay.asObservable() }
 
     func didLoadView() {
         do {
@@ -27,8 +30,13 @@ final class ExchangeRateListViewModel {
                 CurrencyPair(first: usd, second: gbp),
                 CurrencyPair(first: gbp, second: usd)
             ]
-            service.getRates(for: pairs) { result in
-                print(result)
+            refreshDisposable = service.getRates(for: pairs) { [weak self] result in
+                switch result {
+                case .success(let rates):
+                    self?.ratesRelay.value = rates
+                case .failure(let error):
+                    self?.errorRelay.value = error
+                }
             }
         } catch {
             print(error)

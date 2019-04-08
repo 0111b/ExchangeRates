@@ -19,9 +19,11 @@ final class Disposable {
         dispose()
     }
 
-    func add(to bag: DisposeBag) {
+    func disposed(by bag: DisposeBag) {
         bag.insert(disposable: self)
     }
+
+    class var empty: Disposable { return Disposable { } }
 }
 
 final class DisposeBag {

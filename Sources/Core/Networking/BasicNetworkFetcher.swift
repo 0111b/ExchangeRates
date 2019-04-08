@@ -25,7 +25,7 @@ final class BasicNetworkFetcher: NetworkDataFetcher {
     @discardableResult
     func execute<FetchResult>(request: URLRequest,
                               decode: @escaping (Data) throws -> FetchResult,
-                              completion: @escaping (Result<FetchResult, DataFetchError>) -> Void) -> Cancellable {
+                              completion: @escaping (Result<FetchResult, DataFetchError>) -> Void) -> Disposable {
         let completionQueue = self.completionQueue
         let done: (FetchResult) -> Void = { result in
             completionQueue.async { completion(.success(result)) }
@@ -56,8 +56,8 @@ final class BasicNetworkFetcher: NetworkDataFetcher {
         }
         let task = session.dataTask(with: request, completionHandler: requestCompletion)
         task.resume()
-        return task
+        return Disposable {
+            task.cancel()
+        }
     }
 }
-
-extension URLSessionDataTask: Cancellable {}

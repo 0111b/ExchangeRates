@@ -13,6 +13,17 @@ final class ExchangeRateListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         viewModel.didLoadView()
+    }
+
+    private func bind() {
+        viewModel.rates.observe(on: .main) { rates in
+            print(rates)
+        }.disposed(by: viewModel.disposeBag)
+        viewModel.error.observe(on: .main) { error in
+            guard let error = error else { return }
+            print(error)
+        }.disposed(by: viewModel.disposeBag)
     }
 }

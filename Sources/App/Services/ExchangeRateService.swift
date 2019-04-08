@@ -9,8 +9,7 @@
 import Foundation
 
 protocol ExchangeRateServiceProtocol {
-    @discardableResult
-    func getRates(for pairs: [CurrencyPair], completion: @escaping (Result<[ExchangeRate], DataFetchError>) -> Void) -> Cancellable
+    func getRates(for pairs: [CurrencyPair], completion: @escaping (Result<[ExchangeRate], DataFetchError>) -> Void) -> Disposable
 }
 
 final class ExchangeRateService: ExchangeRateServiceProtocol {
@@ -19,11 +18,10 @@ final class ExchangeRateService: ExchangeRateServiceProtocol {
         self.fetcher = fetcher
     }
 
-    @discardableResult
-    func getRates(for pairs: [CurrencyPair], completion: @escaping (Result<[ExchangeRate], DataFetchError>) -> Void) -> Cancellable {
+    func getRates(for pairs: [CurrencyPair], completion: @escaping (Result<[ExchangeRate], DataFetchError>) -> Void) -> Disposable {
         guard let request = GetRatesRequest(pairs: pairs).buildRequest(against: baseURL) else {
             completion(.failure(.invalidRequest))
-            return StubCancellable()
+            return Disposable.empty
         }
         let transform: (CurrencyPairDictionary<ExchangeRate.Rate>) -> [ExchangeRate] = { dictionary in
             return dictionary.map {
