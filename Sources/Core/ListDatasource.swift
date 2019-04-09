@@ -38,6 +38,20 @@ where Cell: NibReusableTableViewCell {
         return items[indexPath.row]
     }
 
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    }
+
     private let configurator: CellConfigurator
     fileprivate unowned let tableView: UITableView
     fileprivate var items = [Item]()
@@ -51,7 +65,7 @@ extension ListDatasource where Cell: ConfigurableCell, Cell.Model == Item {
     }
 }
 
-final class AnimatableListDatasource<Item, Cell>: ListDatasource<Item, Cell>
+class AnimatableListDatasource<Item, Cell>: ListDatasource<Item, Cell>
 where Item: Equatable, Cell: NibReusableTableViewCell {
 
     override func set(items: [Item]) {

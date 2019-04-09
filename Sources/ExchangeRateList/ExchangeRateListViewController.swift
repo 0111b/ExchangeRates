@@ -27,7 +27,8 @@ final class ExchangeRateListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddCurrencyPair"), style: .plain, target: self, action: #selector(type(of: self).addButtonTapped(sender:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(type(of: self).addButtonTapped(sender:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(type(of: self).editButtonTapped(sender:)))
         tableView.delegate = self
         tableView.dataSource = dataSource
         bind()
@@ -40,14 +41,30 @@ final class ExchangeRateListViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        viewModel.viewDidDIssapear()
+        viewModel.viewDidDissapear()
+    }
+
+    @objc func addButtonTapped(sender: Any) {
+        setTableView(editing: false)
+        coordinator.addCurrencyPair { [weak viewModel = self.viewModel] newPair in
+            viewModel?.add(pair: newPair)
+        }
+    }
+
+    @objc func editButtonTapped(sender: Any) {
+        setTableView(editing: !tableView.isEditing)
     }
 
     // MARK: - Private -
 
     private unowned let coordinator: ExchangeRateListCoordinator
     private let viewModel: ExchangeRateListViewModel
-    private lazy var dataSource: AnimatableListDatasource<ExchangeRate, ExchangeRateListCell> = .init(self.tableView)
+    private lazy var dataSource: TableDataSource = {
+        let dataSource = TableDataSource(self.tableView)
+        dataSource.moveItem = self.viewModel.movePair(from:to:)
+        dataSource.removeItem = self.viewModel.removePair(at:)
+        return dataSource
+    }()
     
     private func bind() {
         viewModel.rates.observe(on: .main) { [unowned dataSource = self.dataSource] rates in
@@ -60,9 +77,13 @@ final class ExchangeRateListViewController: UIViewController {
         }.disposed(by: viewModel.disposeBag)
     }
 
-    @objc private func addButtonTapped(sender: Any) {
-        coordinator.addCurrencyPair { [weak viewModel = self.viewModel] newPair in
-            viewModel?.add(pair: newPair)
+    private func setTableView(editing isEditing: Bool) {
+        navigationItem.leftBarButtonItem = isEditing ? doneBarButtonItem : editBarButtonItem
+        tableView.setEditing(isEditing, animated: true)
+        if isEditing {
+            viewModel.didStartEditingList()
+        } else {
+            viewModel.didStopEditingList()
         }
     }
 
@@ -71,10 +92,40 @@ final class ExchangeRateListViewController: UIViewController {
         table.separatorStyle = .none
         return table
     }()
+
+    private lazy var editBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(type(of: self).editButtonTapped(sender:)))
+    private lazy var doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(type(of: self).editButtonTapped(sender:)))
 }
 
 extension ExchangeRateListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+}
+
+private final class TableDataSource: AnimatableListDatasource<ExchangeRate, ExchangeRateListCell> {
+
+    var moveItem: (Int, Int) -> Void = { _, _ in }
+    var removeItem: (Int) -> Void = { _ in }
+
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard case .delete = editingStyle else { return }
+        removeItem(indexPath.row)
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        moveItem(sourceIndexPath.row, destinationIndexPath.row)
     }
 }

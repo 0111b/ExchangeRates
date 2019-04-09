@@ -34,8 +34,17 @@ final class ExchangeRateListViewModel {
         startTimer()
     }
 
-    func viewDidDIssapear() {
+    func viewDidDissapear() {
         stopTimer()
+    }
+
+    func didStartEditingList() {
+        stopTimer()
+        fetchRequest = Disposable.empty // cancel pending request
+    }
+
+    func didStopEditingList() {
+        startTimer()
     }
 
     func add(pair: CurrencyPair) {
@@ -43,6 +52,26 @@ final class ExchangeRateListViewModel {
         pairs.insert(pair, at: 0)
         selectedPairs.value = pairs
     }
+
+    func removePair(at index: Int) {
+        var pairs = selectedPairs.value
+        pairs.remove(at: index)
+        selectedPairs.value = pairs
+        var rates = ratesRelay.value
+        rates.remove(at: index)
+        ratesRelay.value = rates
+    }
+
+    func movePair(from source: Int, to destination: Int) {
+        var pairs = selectedPairs.value
+        pairs.swapAt(source, destination)
+        selectedPairs.value = pairs
+        var rates = ratesRelay.value
+        rates.swapAt(source, destination)
+        ratesRelay.value = rates
+    }
+
+    private typealias Modification<Item> = ([Item]) -> [Item]
 
     // MARK: - Private -
 
