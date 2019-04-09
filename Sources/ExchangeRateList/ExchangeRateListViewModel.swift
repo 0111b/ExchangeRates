@@ -6,16 +6,18 @@
 //  Copyright © 2019 Revolut. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 final class ExchangeRateListViewModel {
     init(pairs: MutableObservable<[CurrencyPair]>,
-         service: ExchangeRateServiceProtocol = ExchangeRateService(config: ApplicationConfig.current)) {
+         service: ExchangeRateServiceProtocol = ExchangeRateService(config: ApplicationConfig.current),
+         notificationCenter: NotificationCenter = .default) {
         self.service = service
         self.selectedPairs = pairs
         pairs.observe { [unowned self] _ in
             self.fetchRates()
         }.disposed(by: disposeBag)
+        registerForSystemNotifications(with: notificationCenter)
     }
 
     let disposeBag = DisposeBag()
@@ -54,29 +56,48 @@ final class ExchangeRateListViewModel {
     }
 
     func removePair(at index: Int) {
-        var pairs = selectedPairs.value
-        pairs.remove(at: index)
-        selectedPairs.value = pairs
+        // Update UI
         var rates = ratesRelay.value
         rates.remove(at: index)
         ratesRelay.value = rates
+        // Update model
+        var pairs = selectedPairs.value
+        pairs.remove(at: index)
+        selectedPairs.value = pairs
     }
 
     func movePair(from source: Int, to destination: Int) {
-        var pairs = selectedPairs.value
-        pairs.swapAt(source, destination)
-        selectedPairs.value = pairs
+        // Update UI
         var rates = ratesRelay.value
         rates.swapAt(source, destination)
         ratesRelay.value = rates
+        // Update model
+        var pairs = selectedPairs.value
+        pairs.swapAt(source, destination)
+        selectedPairs.value = pairs
     }
-
-    private typealias Modification<Item> = ([Item]) -> [Item]
 
     // MARK: - Private -
 
     private let service: ExchangeRateServiceProtocol
     private let selectedPairs: MutableObservable<[CurrencyPair]>
+
+    // MARK: Notifications
+
+    private func registerForSystemNotifications(with notificationCenter: NotificationCenter) {
+        let register: (NSNotification.Name, @escaping () -> Void) -> Void = { notification, handler in
+            let token = notificationCenter
+                .addObserver(forName: notification,
+                             object: nil,
+                             queue: .current,
+                             using: { _ in handler() })
+            Disposable {
+                notificationCenter.removeObserver(token)
+            }.disposed(by: self.disposeBag)
+        }
+        register(UIApplication.willResignActiveNotification, self.stopTimer)
+        register(UIApplication.didBecomeActiveNotification, self.startTimer)
+    }
 
     // MARK: Timer
 
