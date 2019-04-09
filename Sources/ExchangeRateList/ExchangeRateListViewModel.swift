@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 final class ExchangeRateListViewModel {
     init(pairs: MutableObservable<[CurrencyPair]>,
@@ -104,12 +105,14 @@ final class ExchangeRateListViewModel {
     private var refreshTimer = Disposable.empty
 
     private func startTimer() {
+        os_log(.info, log: Log.general, "Start refresh timer")
         refreshTimer = Timer.schedule(interval: 1.0).observe(on: .main) { [unowned self] in
             self.fetchRates()
         }
     }
 
     private func stopTimer() {
+        os_log(.info, log: Log.general, "Stop refresh timer")
         refreshTimer = Disposable.empty
     }
 

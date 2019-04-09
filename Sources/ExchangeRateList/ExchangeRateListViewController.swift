@@ -68,7 +68,7 @@ final class ExchangeRateListViewController: UIViewController {
     
     private func bind() {
         viewModel.rates.observe(on: .main) { [unowned dataSource = self.dataSource] rates in
-            os_log(.info, log: Log.general, "Rates: %{public}@", rates.description)
+            os_log(.debug, log: Log.general, "Rates: %{public}@", rates.description)
             dataSource.set(items: rates)
         }.disposed(by: viewModel.disposeBag)
         viewModel.error.observe(on: .main) { error in
@@ -78,6 +78,7 @@ final class ExchangeRateListViewController: UIViewController {
     }
 
     private func setTableView(editing isEditing: Bool) {
+        guard isEditing != tableView.isEditing else { return }
         navigationItem.leftBarButtonItem = isEditing ? doneBarButtonItem : editBarButtonItem
         tableView.setEditing(isEditing, animated: true)
         if isEditing {
@@ -105,6 +106,10 @@ extension ExchangeRateListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        return []
+    }
 }
 
 private final class TableDataSource: AnimatableListDatasource<ExchangeRate, ExchangeRateListCell> {
@@ -116,6 +121,10 @@ private final class TableDataSource: AnimatableListDatasource<ExchangeRate, Exch
         return true
     }
 
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        moveItem(sourceIndexPath.row, destinationIndexPath.row)
+    }
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard case .delete = editingStyle else { return }
         removeItem(indexPath.row)
@@ -125,7 +134,5 @@ private final class TableDataSource: AnimatableListDatasource<ExchangeRate, Exch
         return true
     }
 
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        moveItem(sourceIndexPath.row, destinationIndexPath.row)
-    }
+
 }
