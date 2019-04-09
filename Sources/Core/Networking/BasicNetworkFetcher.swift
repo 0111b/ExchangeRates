@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import os.log
+import os.signpost
 
 final class BasicNetworkFetcher: NetworkDataFetcher {
 
@@ -26,14 +28,14 @@ final class BasicNetworkFetcher: NetworkDataFetcher {
     func execute<FetchResult>(request: URLRequest,
                               decode: @escaping (Data) throws -> FetchResult,
                               completion: @escaping (Result<FetchResult, DataFetchError>) -> Void) -> Disposable {
+        let signpostId = OSSignpostID(log: Log.networking, object: request as AnyObject)
         let completionQueue = self.completionQueue
-        let done: (FetchResult) -> Void = { result in
-            completionQueue.async { completion(.success(result)) }
+        let done: (Result<FetchResult, DataFetchError>) -> Void = { result in
+            completionQueue.async { completion(result) }
         }
-        let fail: (DataFetchError) -> Void = { error in
-            completionQueue.async { completion(.failure(error)) }
-        }
+        let fail: (DataFetchError) -> Void = { done(.failure($0)) }
         let requestCompletion: (Data?, URLResponse?, Error?) -> Void = { [processingQueue = self.processingQueue] data, urlResponse, error in
+            os_signpost(.end, log: Log.networking, name: "Execute request", signpostID: signpostId, "Finish request")
             if let error = error {
                 fail(.networkError(error))
                 return
@@ -46,15 +48,22 @@ final class BasicNetworkFetcher: NetworkDataFetcher {
                     return
             }
             processingQueue.async {
+                os_signpost(.begin, log: Log.networking, name: "Parse request", signpostID: signpostId, "Begin processing")
+                let result: Result<FetchResult, DataFetchError>
+                let isSuccess: Bool
                 do {
-                    let result = try decode(data)
-                    done(result)
+                    result = try .success(decode(data))
+                    isSuccess = true
                 } catch let error {
-                    fail(.parsingError(error))
+                    result = .failure(.parsingError(error))
+                    isSuccess = false
                 }
+                os_signpost(.end, log: Log.networking, name: "Parse request", signpostID: signpostId, "Finished processing %d", isSuccess)
+                done(result)
             }
         }
         let task = session.dataTask(with: request, completionHandler: requestCompletion)
+        os_signpost(.begin, log: Log.networking, name: "Execute request", signpostID: signpostId, "Start request")
         task.resume()
         return Disposable {
             task.cancel()

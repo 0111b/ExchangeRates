@@ -51,6 +51,7 @@
 		E610C3DA225B7DA90096F5A8 /* CurrencySelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C3D9225B7DA90096F5A8 /* CurrencySelectorCell.swift */; };
 		E63F7872225B862200E87AF3 /* CurrencySelectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E63F7871225B862200E87AF3 /* CurrencySelectorCell.xib */; };
 		E63F7874225B8B9100E87AF3 /* AddCurrencyPairFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63F7873225B8B9100E87AF3 /* AddCurrencyPairFlow.swift */; };
+		E6969544225C8A5C00F21B83 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969543225C8A5C00F21B83 /* Log.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		E610C3D9225B7DA90096F5A8 /* CurrencySelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectorCell.swift; sourceTree = "<group>"; };
 		E63F7871225B862200E87AF3 /* CurrencySelectorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencySelectorCell.xib; sourceTree = "<group>"; };
 		E63F7873225B8B9100E87AF3 /* AddCurrencyPairFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyPairFlow.swift; sourceTree = "<group>"; };
+		E6969543225C8A5C00F21B83 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				E610C3A4225A555E0096F5A8 /* Networking */,
 				E610C3B9225B44940096F5A8 /* Storage */,
 				E610C3C4225B55A00096F5A8 /* Observable */,
+				E6969543225C8A5C00F21B83 /* Log.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				E610C36A225A1F660096F5A8 /* ExchangeRateListViewController.swift in Sources */,
 				E610C3AA225A56AE0096F5A8 /* DataFetchError.swift in Sources */,
 				E610C3D3225B758E0096F5A8 /* Timer+Observable.swift in Sources */,
+				E6969544225C8A5C00F21B83 /* Log.swift in Sources */,
 				E610C3D8225B7B700096F5A8 /* CurrencySelectorViewController.swift in Sources */,
 				E610C3B0225B23FB0096F5A8 /* HTTPRequest.swift in Sources */,
 				E610C3BD225B45450096F5A8 /* UserDefaultsStorage.swift in Sources */,

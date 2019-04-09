@@ -9,14 +9,14 @@
 import UIKit
 
 final class AddCurrencyPairFlow {
-    init(currencies: [Currency], completion: @escaping (CurrencyPair) -> Void) {
+    init(currencies: [Currency], existingPairs: [CurrencyPair], completion: @escaping (CurrencyPair) -> Void) {
         availableCurrencies = currencies
+        self.existingPairs = existingPairs
         complete = completion
     }
 
     func run(on presenter: UIViewController) {
-        let disabled = Set<Currency.Code>()
-        let selector = makeSelector(title: "First", disabled: disabled) { [unowned self] currency in
+        let selector = makeSelector(title: "First", disabled: Set()) { [unowned self] currency in
             self.didSelectFirst(currency: currency)
         }
         navigationController = UINavigationController(rootViewController: selector)
@@ -24,7 +24,12 @@ final class AddCurrencyPairFlow {
     }
 
     private func didSelectFirst(currency firstCurrency: Currency) {
-        let disabled = Set<Currency.Code>(arrayLiteral: firstCurrency.code)
+        var disabled: Set<Currency.Code> = Set(
+            self.existingPairs
+                .filter { $0.first.code == firstCurrency.code }
+                .map { $0.second.code }
+        )
+        disabled.insert(firstCurrency.code)
         let selector = makeSelector(title: "Second", disabled: disabled) { [unowned self] secondCurrency in
             self.didSelect(pair: CurrencyPair(first: firstCurrency, second: secondCurrency))
         }
@@ -38,6 +43,7 @@ final class AddCurrencyPairFlow {
     }
 
     private let availableCurrencies: [Currency]
+    private let existingPairs: [CurrencyPair]
     private let complete: (CurrencyPair) -> Void
     private lazy var navigationController = UINavigationController()
 
@@ -45,7 +51,7 @@ final class AddCurrencyPairFlow {
                               disabled: Set<Currency.Code>,
                               action: @escaping (Currency) -> Void) -> CurrencySelectorViewController {
         let controller = CurrencySelectorViewController(currencies: availableCurrencies, disabled: disabled)
-        controller.title = "Hello"
+        controller.title = title
         controller.didSelectItem = action
         return controller
     }

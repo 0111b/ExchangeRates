@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import os.log
 
 final class ExchangeRateListViewController: UIViewController {
     private let viewModel = ExchangeRateListViewModel()
     private lazy var addCurrencyFlow: AddCurrencyPairFlow = {
-        return AddCurrencyPairFlow(currencies: UserPreferences().availableCurrencies) { pair in
-            print(pair)
+        return AddCurrencyPairFlow(currencies: UserPreferences().availableCurrencies, existingPairs: self.viewModel.pairs()) { pair in
+            os_log(.info, log: Log.general, "New pair %{public}", pair.description)
         }
     }()
     override func viewDidLoad() {
@@ -30,11 +31,11 @@ final class ExchangeRateListViewController: UIViewController {
 
     private func bind() {
         viewModel.rates.observe(on: .main) { rates in
-            print(rates)
+            os_log(.info, log: Log.general, "Rates: %{public}@", rates.description)
         }.disposed(by: viewModel.disposeBag)
         viewModel.error.observe(on: .main) { error in
             guard let error = error else { return }
-            print(error)
+            os_log(.error, log: Log.general, "Got error %@", error.localizedDescription)
         }.disposed(by: viewModel.disposeBag)
     }
 }

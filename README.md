@@ -4,6 +4,5 @@ The sample app
 
 # TODO:
 network activity
-observable
-log
+background timer stop
 ipad

@@ -27,6 +27,7 @@ final class ExchangeRateListViewModel {
 
     func didLoadView() {
         startTimer()
+        //FIXME: remove
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [unowned self] in
             self.stopTimer()
         }
@@ -53,7 +54,7 @@ final class ExchangeRateListViewModel {
         }
     }
 
-    private func pairs() -> [CurrencyPair] {
+    func pairs() -> [CurrencyPair] {
         do {
             let usd = try CurrencyFactory.make(from: "USD")
             let gbp = try CurrencyFactory.make(from: "GBP")
@@ -62,7 +63,6 @@ final class ExchangeRateListViewModel {
                 CurrencyPair(first: gbp, second: usd)
             ]
         } catch {
-            print(error)
             return []
         }
     }
