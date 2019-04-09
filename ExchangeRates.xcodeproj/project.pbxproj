@@ -53,6 +53,8 @@
 		E6969544225C8A5C00F21B83 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969543225C8A5C00F21B83 /* Log.swift */; };
 		E6969546225CA2E200F21B83 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969545225CA2E200F21B83 /* AppCoordinator.swift */; };
 		E6969548225CA83700F21B83 /* ExchangeRateListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969547225CA83700F21B83 /* ExchangeRateListCoordinator.swift */; };
+		E696954A225CD04900F21B83 /* ExchangeRateListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969549225CD04900F21B83 /* ExchangeRateListCell.swift */; };
+		E696954C225CD31600F21B83 /* ExchangeRateListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E696954B225CD31600F21B83 /* ExchangeRateListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		E6969543225C8A5C00F21B83 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		E6969545225CA2E200F21B83 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E6969547225CA83700F21B83 /* ExchangeRateListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateListCoordinator.swift; sourceTree = "<group>"; };
+		E6969549225CD04900F21B83 /* ExchangeRateListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateListCell.swift; sourceTree = "<group>"; };
+		E696954B225CD31600F21B83 /* ExchangeRateListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeRateListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +257,8 @@
 				E6969547225CA83700F21B83 /* ExchangeRateListCoordinator.swift */,
 				E610C3CB225B59560096F5A8 /* ExchangeRateListViewModel.swift */,
 				E610C369225A1F660096F5A8 /* ExchangeRateListViewController.swift */,
+				E6969549225CD04900F21B83 /* ExchangeRateListCell.swift */,
+				E696954B225CD31600F21B83 /* ExchangeRateListCell.xib */,
 			);
 			path = ExchangeRateList;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				E610C39B225A3F970096F5A8 /* Localizable.strings in Resources */,
 				E610C36F225A1F680096F5A8 /* Assets.xcassets in Resources */,
 				E63F7872225B862200E87AF3 /* CurrencySelectorCell.xib in Resources */,
+				E696954C225CD31600F21B83 /* ExchangeRateListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +447,7 @@
 				E610C3D3225B758E0096F5A8 /* Timer+Observable.swift in Sources */,
 				E6969544225C8A5C00F21B83 /* Log.swift in Sources */,
 				E610C3D8225B7B700096F5A8 /* CurrencySelectorViewController.swift in Sources */,
+				E696954A225CD04900F21B83 /* ExchangeRateListCell.swift in Sources */,
 				E610C3B0225B23FB0096F5A8 /* HTTPRequest.swift in Sources */,
 				E610C3BD225B45450096F5A8 /* UserDefaultsStorage.swift in Sources */,
 				E610C3C6225B55EF0096F5A8 /* Observable.swift in Sources */,

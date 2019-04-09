@@ -25,13 +25,16 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="251" text=" sad asd asdas asdsjas djasjbdajsdjasdjasdh asd asjdahjsd jasdasdhjsad ajs" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZl-ko-9Nm">
-                        <rect key="frame" x="102" y="12" width="262" height="160.5"/>
+                        <rect key="frame" x="118" y="12" width="246" height="160.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHx-pg-dnR">
-                        <rect key="frame" x="48" y="82" width="42" height="21"/>
+                        <rect key="frame" x="56" y="82" width="50" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="700" constant="50" id="qmK-AG-MCd"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -43,7 +46,7 @@
                     <constraint firstItem="aZl-ko-9Nm" firstAttribute="top" secondItem="eAI-7K-EK2" secondAttribute="top" constant="12" id="GPU-ms-mfY"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BhO-04-prK" secondAttribute="bottom" constant="12" id="HED-zy-rQh"/>
                     <constraint firstItem="BhO-04-prK" firstAttribute="leading" secondItem="eAI-7K-EK2" secondAttribute="leading" constant="12" id="Kaa-00-jHy"/>
-                    <constraint firstItem="OHx-pg-dnR" firstAttribute="leading" secondItem="BhO-04-prK" secondAttribute="trailing" constant="12" id="Np0-9M-Tf9"/>
+                    <constraint firstItem="OHx-pg-dnR" firstAttribute="leading" secondItem="BhO-04-prK" secondAttribute="trailing" constant="20" id="Np0-9M-Tf9"/>
                     <constraint firstItem="OHx-pg-dnR" firstAttribute="centerY" secondItem="eAI-7K-EK2" secondAttribute="centerY" id="T8T-8e-daU"/>
                     <constraint firstAttribute="bottom" secondItem="aZl-ko-9Nm" secondAttribute="bottom" constant="12" id="V85-Il-kCU"/>
                     <constraint firstItem="OHx-pg-dnR" firstAttribute="centerY" secondItem="aZl-ko-9Nm" secondAttribute="centerY" id="cda-XE-Gki"/>

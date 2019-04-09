@@ -30,13 +30,12 @@ final class ExchangeRateListViewModel {
 
     // MARK: - Input -
 
-
-    func didLoadView() {
+    func viewWillAppear() {
         startTimer()
-        //FIXME: remove
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [unowned self] in
-//            self.stopTimer()
-//        }
+    }
+
+    func viewDidDIssapear() {
+        stopTimer()
     }
 
     func add(pair: CurrencyPair) {
