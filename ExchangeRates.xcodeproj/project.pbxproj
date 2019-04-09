@@ -55,6 +55,7 @@
 		E6969548225CA83700F21B83 /* ExchangeRateListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969547225CA83700F21B83 /* ExchangeRateListCoordinator.swift */; };
 		E696954A225CD04900F21B83 /* ExchangeRateListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969549225CD04900F21B83 /* ExchangeRateListCell.swift */; };
 		E696954C225CD31600F21B83 /* ExchangeRateListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E696954B225CD31600F21B83 /* ExchangeRateListCell.xib */; };
+		E696954E225CD72B00F21B83 /* ListDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E696954D225CD72B00F21B83 /* ListDatasource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		E6969547225CA83700F21B83 /* ExchangeRateListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateListCoordinator.swift; sourceTree = "<group>"; };
 		E6969549225CD04900F21B83 /* ExchangeRateListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateListCell.swift; sourceTree = "<group>"; };
 		E696954B225CD31600F21B83 /* ExchangeRateListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeRateListCell.xib; sourceTree = "<group>"; };
+		E696954D225CD72B00F21B83 /* ListDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDatasource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 				E610C3B9225B44940096F5A8 /* Storage */,
 				E610C3C4225B55A00096F5A8 /* Observable */,
 				E6969543225C8A5C00F21B83 /* Log.swift */,
+				E696954D225CD72B00F21B83 /* ListDatasource.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				E610C3C1225B47160096F5A8 /* UserPreferences.swift in Sources */,
 				E610C36A225A1F660096F5A8 /* ExchangeRateListViewController.swift in Sources */,
 				E610C3AA225A56AE0096F5A8 /* DataFetchError.swift in Sources */,
+				E696954E225CD72B00F21B83 /* ListDatasource.swift in Sources */,
 				E610C3D3225B758E0096F5A8 /* Timer+Observable.swift in Sources */,
 				E6969544225C8A5C00F21B83 /* Log.swift in Sources */,
 				E610C3D8225B7B700096F5A8 /* CurrencySelectorViewController.swift in Sources */,

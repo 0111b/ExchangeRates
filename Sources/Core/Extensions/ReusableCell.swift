@@ -43,3 +43,8 @@ extension UITableView {
         return cell
     }
 }
+
+protocol ConfigurableCell {
+    associatedtype Model
+    func set(model: Model)
+}

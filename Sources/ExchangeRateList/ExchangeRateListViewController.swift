@@ -47,10 +47,8 @@ final class ExchangeRateListViewController: UIViewController {
 
     private unowned let coordinator: ExchangeRateListCoordinator
     private let viewModel: ExchangeRateListViewModel
-    private lazy var dataSource: ListDatasource<ExchangeRate, ExchangeRateListCell> = .init(self.tableView) { cell, rate in
-
-    }
-
+    private lazy var dataSource: AnimatableListDatasource<ExchangeRate, ExchangeRateListCell> = .init(self.tableView)
+    
     private func bind() {
         viewModel.rates.observe(on: .main) { [unowned dataSource = self.dataSource] rates in
             os_log(.info, log: Log.general, "Rates: %{public}@", rates.description)
@@ -79,39 +77,4 @@ extension ExchangeRateListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
-}
-
-private class ListDatasource<Item, Cell>: NSObject, UITableViewDataSource
-where Cell: NibReusableTableViewCell {
-    typealias CellConfigurator = (Cell, Item) -> Void
-
-    init(_ tableView: UITableView, configure: @escaping CellConfigurator) {
-        self.tableView = tableView
-        configurator = configure
-        tableView.register(cell: Cell.self)
-    }
-
-    func set(items: [Item]) {
-        self.items = items
-        tableView.reloadData()
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: Cell = tableView.dequeueReusableCell(for: indexPath)
-        configurator(cell, item(at: indexPath))
-        return cell
-    }
-
-    func item(at indexPath: IndexPath) -> Item {
-        assert(items.indices ~= indexPath.row)
-        return items[indexPath.row]
-    }
-
-    private let configurator: CellConfigurator
-    private unowned let tableView: UITableView
-    private var items = [Item]()
 }

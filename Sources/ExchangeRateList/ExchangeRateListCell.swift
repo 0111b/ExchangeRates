@@ -11,3 +11,9 @@ import Foundation
 final class ExchangeRateListCell: NibReusableTableViewCell {
 
 }
+
+extension ExchangeRateListCell: ConfigurableCell {
+    func set(model: ExchangeRate) {
+        self.textLabel?.text = model.description
+    }
+}
