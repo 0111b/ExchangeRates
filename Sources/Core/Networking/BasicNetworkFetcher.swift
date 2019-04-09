@@ -64,6 +64,7 @@ final class BasicNetworkFetcher: NetworkDataFetcher {
         }
         let task = session.dataTask(with: request, completionHandler: requestCompletion)
         os_signpost(.begin, log: Log.networking, name: "Execute request", signpostID: signpostId, "Start request")
+        os_log(.debug, log: Log.networking, "Request URL: %@", request.url?.absoluteString ?? "")
         task.resume()
         return Disposable {
             task.cancel()

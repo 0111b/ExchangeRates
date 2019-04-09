@@ -24,8 +24,9 @@ final class ExchangeRateService: ExchangeRateServiceProtocol {
             return Disposable.empty
         }
         let transform: (CurrencyPairDictionary<ExchangeRate.Rate>) -> [ExchangeRate] = { dictionary in
-            return dictionary.map {
-                return ExchangeRate(rate: $0.value, currencies: $0.key)
+            return pairs.map { pair in
+                let rate: ExchangeRate.Rate = dictionary[pair] ?? 0.0
+                return ExchangeRate(rate: rate, currencies: pair)
             }
         }
         return fetcher.execute(request: request, transform: transform, completion: completion)
@@ -68,6 +69,10 @@ private struct CurrencyPairDictionary<Value: Decodable>: Sequence, Decodable {
             let value = try container.decode(Value.self, forKey: rawKey)
             storage[key] = value
         }
+    }
+
+    subscript(key: Storage.Key) -> Storage.Value? {
+        return storage[key]
     }
 
     /// convenience constructor

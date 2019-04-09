@@ -40,7 +40,7 @@ final class AddCurrencyPairFlow {
 
     private func didSelect(pair: CurrencyPair) {
         self.navigationController.dismiss(animated: true, completion: { [self] in
-            os_log(.default, log: Log.general, "AddCurrencyPairFlow did finish %{public}", pair.description)
+            os_log(.default, log: Log.general, "AddCurrencyPairFlow did finish %{public}@", pair.description)
             self.complete(pair)
         })
     }
