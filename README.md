@@ -6,3 +6,4 @@ The sample app
 network activity
 background timer stop
 ipad
+first currency disabled

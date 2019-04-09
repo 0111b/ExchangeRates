@@ -10,23 +10,28 @@ import UIKit
 import os.log
 
 final class ExchangeRateListViewController: UIViewController {
-    private let viewModel = ExchangeRateListViewModel()
-    private lazy var addCurrencyFlow: AddCurrencyPairFlow = {
-        return AddCurrencyPairFlow(currencies: UserPreferences().availableCurrencies, existingPairs: self.viewModel.pairs()) { pair in
-            os_log(.info, log: Log.general, "New pair %{public}", pair.description)
-        }
-    }()
+    init(coordinator: ExchangeRateListCoordinator, viewModel: ExchangeRateListViewModel) {
+        self.coordinator = coordinator
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    private unowned let coordinator: ExchangeRateListCoordinator
+    private let viewModel: ExchangeRateListViewModel
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AddCurrencyPair"), style: .plain, target: self, action: #selector(type(of: self).addButtonTapped(sender:)))
         bind()
         viewModel.didLoadView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.addCurrencyFlow.run(on: self)
-        }
     }
 
     private func bind() {
@@ -37,5 +42,11 @@ final class ExchangeRateListViewController: UIViewController {
             guard let error = error else { return }
             os_log(.error, log: Log.general, "Got error %@", error.localizedDescription)
         }.disposed(by: viewModel.disposeBag)
+    }
+
+    @objc private func addButtonTapped(sender: Any) {
+        coordinator.addCurrencyPair { [weak viewModel = self.viewModel] newPair in
+            viewModel?.add(pair: newPair)
+        }
     }
 }

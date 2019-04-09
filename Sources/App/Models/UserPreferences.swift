@@ -13,10 +13,7 @@ final class UserPreferences {
         self.storage = storage
     }
 
-    var selectedCurrencyPairs: [CurrencyPair] {
-        get { return get(for: .selectedCurrencyPairs, default: []) }
-        set { set(newValue, for: .selectedCurrencyPairs) }
-    }
+    private(set) lazy var selectedPairs: MutableObservable<[CurrencyPair]> = self.makeSelectedPairs()
 
     var availableCurrencies: [Currency] {
         return [
@@ -57,7 +54,17 @@ final class UserPreferences {
 
     // MARK: - Private interface -
 
+    private func makeSelectedPairs() -> MutableObservable<[CurrencyPair]> {
+        let pairs: [CurrencyPair] = self.get(for: .selectedCurrencyPairs, default: [])
+        let observable = MutableObservable<[CurrencyPair]>(value: pairs)
+        self.selectedPairsObservation = observable.observe { [unowned self] pairs in
+            self.set(pairs, for: .selectedCurrencyPairs)
+        }
+        return observable
+    }
+
     private let storage: KeyValueStorage
+    private var selectedPairsObservation: Disposable?
 
     private lazy var syncQueue = DispatchQueue(label: "com.revolut.UserPreferences.sync",
                                                qos: .utility,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 final class AddCurrencyPairFlow {
     init(currencies: [Currency], existingPairs: [CurrencyPair], completion: @escaping (CurrencyPair) -> Void) {
@@ -16,7 +17,8 @@ final class AddCurrencyPairFlow {
     }
 
     func run(on presenter: UIViewController) {
-        let selector = makeSelector(title: "First", disabled: Set()) { [unowned self] currency in
+        os_log(.default, log: Log.general, "AddCurrencyPairFlow start")
+        let selector = makeSelector(title: "First", disabled: Set()) { [self] currency in
             self.didSelectFirst(currency: currency)
         }
         navigationController = UINavigationController(rootViewController: selector)
@@ -30,14 +32,15 @@ final class AddCurrencyPairFlow {
                 .map { $0.second.code }
         )
         disabled.insert(firstCurrency.code)
-        let selector = makeSelector(title: "Second", disabled: disabled) { [unowned self] secondCurrency in
+        let selector = makeSelector(title: "Second", disabled: disabled) { [self] secondCurrency in
             self.didSelect(pair: CurrencyPair(first: firstCurrency, second: secondCurrency))
         }
         navigationController.pushViewController(selector, animated: true)
     }
 
     private func didSelect(pair: CurrencyPair) {
-        self.navigationController.dismiss(animated: true, completion: { [unowned self] in
+        self.navigationController.dismiss(animated: true, completion: { [self] in
+            os_log(.default, log: Log.general, "AddCurrencyPairFlow did finish %{public}", pair.description)
             self.complete(pair)
         })
     }

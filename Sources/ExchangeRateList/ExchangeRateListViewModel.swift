@@ -9,33 +9,54 @@
 import Foundation
 
 final class ExchangeRateListViewModel {
-    init(service: ExchangeRateServiceProtocol = ExchangeRateService(config: ApplicationConfig.current)) {
+    init(pairs: MutableObservable<[CurrencyPair]>,
+         service: ExchangeRateServiceProtocol = ExchangeRateService(config: ApplicationConfig.current)) {
         self.service = service
+        self.selectedPairs = pairs
+        pairs.observe { [unowned self] _ in
+            self.fetchRates()
+        }.disposed(by: disposeBag)
     }
 
     let disposeBag = DisposeBag()
-    var service: ExchangeRateServiceProtocol
 
+    // MARK: - Output -
 
     private let ratesRelay = MutableObservable<[ExchangeRate]>(value: [])
     var rates: Observable<[ExchangeRate]> { return ratesRelay.asObservable() }
     private let errorRelay = MutableObservable<DataFetchError?>(value: nil)
     var error: Observable<DataFetchError?> { return errorRelay.asObservable() }
 
-    private var refreshRequest = Disposable.empty
-    private var refreshTimer = Disposable.empty
+
+    // MARK: - Input -
+
 
     func didLoadView() {
         startTimer()
         //FIXME: remove
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [unowned self] in
-            self.stopTimer()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [unowned self] in
+//            self.stopTimer()
+//        }
     }
+
+    func add(pair: CurrencyPair) {
+        var pairs = selectedPairs.value
+        pairs.insert(pair, at: 0)
+        selectedPairs.value = pairs
+    }
+
+    // MARK: - Private -
+
+    private let service: ExchangeRateServiceProtocol
+    private let selectedPairs: MutableObservable<[CurrencyPair]>
+
+    // MARK: Timer
+
+    private var refreshTimer = Disposable.empty
 
     private func startTimer() {
         refreshTimer = Timer.schedule(interval: 1.0).observe(on: .main) { [unowned self] in
-            self.refreshRates()
+            self.fetchRates()
         }
     }
 
@@ -43,27 +64,17 @@ final class ExchangeRateListViewModel {
         refreshTimer = Disposable.empty
     }
 
-    private func refreshRates() {
-        refreshRequest = service.getRates(for: pairs()) { [weak self] result in
+    // MARK: Data fetch
+
+    private var fetchRequest = Disposable.empty
+    private func fetchRates() {
+        fetchRequest = service.getRates(for: selectedPairs.value) { [weak self] result in
             switch result {
             case .success(let rates):
                 self?.ratesRelay.value = rates
             case .failure(let error):
                 self?.errorRelay.value = error
             }
-        }
-    }
-
-    func pairs() -> [CurrencyPair] {
-        do {
-            let usd = try CurrencyFactory.make(from: "USD")
-            let gbp = try CurrencyFactory.make(from: "GBP")
-            return [
-                CurrencyPair(first: usd, second: gbp),
-                CurrencyPair(first: gbp, second: usd)
-            ]
-        } catch {
-            return []
         }
     }
 }

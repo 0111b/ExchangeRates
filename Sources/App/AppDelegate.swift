@@ -14,9 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    private lazy var coordinator: AppCoordinator = {
+        guard let window = self.window
+            else { preconditionFailure("App window is not initialized") }
+        return AppCoordinator(mainWindow: window)
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        coordinator.start()
         return true
     }
 
