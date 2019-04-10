@@ -16,40 +16,9 @@ final class UserPreferences {
     private(set) lazy var selectedPairs: MutableObservable<[CurrencyPair]> = self.makeSelectedPairs()
 
     var availableCurrencies: [Currency] {
-        return [
-            "AUD",
-            "BGN",
-            "BRL",
-            "CAD",
-            "CHF",
-            "CNY",
-            "CZK",
-            "DKK",
-            "EUR",
-            "GBP",
-            "HKD",
-            "HRK",
-            "HUF",
-            "IDR",
-            "ILS",
-            "INR",
-            "ISK",
-            "JPY",
-            "KRW",
-            "MXN",
-            "MYR",
-            "NOK",
-            "NZD",
-            "PHP",
-            "PLN",
-            "RON",
-            "RUB",
-            "SEK",
-            "SGD",
-            "THB",
-            "USD",
-            "ZAR"
-            ].compactMap { try? CurrencyFactory.make(from: $0) }
+        return self
+            .get(for: .availableCurrencies, default: defaultCurrencies())
+            .compactMap { try? CurrencyFactory.make(from: $0) }
     }
 
     // MARK: - Private interface -
@@ -84,5 +53,43 @@ final class UserPreferences {
 
     private enum PreferencesKey: String {
         case selectedCurrencyPairs
+        case availableCurrencies
     }
+}
+
+private func defaultCurrencies() -> [String] {
+    return [
+        "AUD",
+        "BGN",
+        "BRL",
+        "CAD",
+        "CHF",
+        "CNY",
+        "CZK",
+        "DKK",
+        "EUR",
+        "GBP",
+        "HKD",
+        "HRK",
+        "HUF",
+        "IDR",
+        "ILS",
+        "INR",
+        "ISK",
+        "JPY",
+        "KRW",
+        "MXN",
+        "MYR",
+        "NOK",
+        "NZD",
+        "PHP",
+        "PLN",
+        "RON",
+        "RUB",
+        "SEK",
+        "SGD",
+        "THB",
+        "USD",
+        "ZAR"
+    ]
 }

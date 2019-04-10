@@ -27,6 +27,7 @@ final class AppCoordinator {
     private lazy var preferences: UserPreferences = {
         return UserPreferences()
     }()
+    
     private lazy var listCoordinator: ExchangeRateListCoordinator = {
         return ExchangeRateListCoordinator(navigationController: mainNavigation, preferences: preferences)
     }()
