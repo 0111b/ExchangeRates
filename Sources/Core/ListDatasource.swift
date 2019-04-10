@@ -68,14 +68,16 @@ extension ListDatasource where Cell: ConfigurableCell, Cell.Model == Item {
 class AnimatableListDatasource<Item, Cell>: ListDatasource<Item, Cell>
 where Item: Equatable, Cell: NibReusableTableViewCell {
 
+    var updateAnimation: UITableView.RowAnimation = .fade
+
     override func set(items: [Item]) {
         let update = difference(from: self.items, to: items)
         let insertIndexPaths = update.inserts.map { IndexPath(row: $0, section: 0) }
         let deleteIndexPaths = update.deletions.map { IndexPath(row: $0, section: 0) }
         self.items = items
         tableView.beginUpdates()
-        tableView.insertRows(at: insertIndexPaths, with: .fade)
-        tableView.deleteRows(at: deleteIndexPaths, with: .fade)
+        tableView.insertRows(at: insertIndexPaths, with: updateAnimation)
+        tableView.deleteRows(at: deleteIndexPaths, with: updateAnimation)
         tableView.endUpdates()
     }
 

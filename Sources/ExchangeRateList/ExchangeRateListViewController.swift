@@ -108,7 +108,17 @@ extension ExchangeRateListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        return []
+        return nil // default actions
+    }
+
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        os_log(.info, log: Log.general, #function)
+        viewModel.didStartEditingList()
+    }
+
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        os_log(.info, log: Log.general, #function)
+        viewModel.didStopEditingList()
     }
 }
 
