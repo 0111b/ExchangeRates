@@ -1,1 +1,3 @@
 "Currency.Error.InvalidCode" = "Invalid currency code: %@";
+"ExchangeRateList.Source.Description" = "<flag> %@";
+"ExchangeRateList.Destination.Description" = "%@ <flag>";

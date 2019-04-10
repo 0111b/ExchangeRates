@@ -17,7 +17,7 @@ final class CurrencySelectorCell: UITableViewCell, NibReusableCell {
     func set(currency: Currency, enabled: Bool) {
         codeLabel.text = currency.code
         nameLabel.text = currency.name
-        iconView.image = UIImage(named: currency.code) ?? UIImage(named: "UnknownCurrency")
+        iconView.image = currency.flagImage
         self.accessoryType = enabled ? .disclosureIndicator : .none
         self.selectionStyle = enabled ? .gray : .none
     }

@@ -68,7 +68,7 @@ extension ListDatasource where Cell: ConfigurableCell, Cell.Model == Item {
 class AnimatableListDatasource<Item, Cell>: ListDatasource<Item, Cell>
 where Item: Equatable, Cell: NibReusableTableViewCell {
 
-    var updateAnimation: UITableView.RowAnimation = .fade
+    var updateAnimation: UITableView.RowAnimation = .none
 
     override func set(items: [Item]) {
         let update = difference(from: self.items, to: items)
