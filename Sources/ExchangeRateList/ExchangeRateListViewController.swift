@@ -36,6 +36,7 @@ final class ExchangeRateListViewController: UIViewController {
         tableView.dataSource = dataSource
         setupConstraints()
         bind()
+        tableView.flashScrollIndicators()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +101,7 @@ final class ExchangeRateListViewController: UIViewController {
         tableView.setEditing(isEditing, animated: true)
         if isEditing {
             viewModel.didStartEditingList()
+            errorView.isHidden = true
         } else {
             viewModel.didStopEditingList()
         }

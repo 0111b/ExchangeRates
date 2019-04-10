@@ -3,20 +3,19 @@
 The sample app
 
 # TODO:
-network activity
+
 ipad
 
-error handling
+
 add currency cancel and titles
 localize string
-main title
+main screen title
 fonts sizes etc
 dynamic fonts
 
 accesibility
 
-
 start/stop timer
-
+ tests
 
 # Requirements

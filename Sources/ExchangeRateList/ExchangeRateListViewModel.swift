@@ -18,6 +18,7 @@ final class ExchangeRateListViewModel {
         pairs.observe { [unowned self] _ in
             self.fetchRates()
         }.disposed(by: disposeBag)
+        ratesRelay.value = pairs.value.map { ExchangeRate(rate: 0.0, currencies: $0) }
         registerForSystemNotifications(with: notificationCenter)
     }
 
