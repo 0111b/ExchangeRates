@@ -28,7 +28,7 @@ final class ExchangeRateListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(type(of: self).addButtonTapped(sender:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(type(of: self).editButtonTapped(sender:)))
+        self.navigationItem.leftBarButtonItem = editBarButtonItem
         tableView.delegate = self
         tableView.dataSource = dataSource
         bind()
@@ -45,6 +45,9 @@ final class ExchangeRateListViewController: UIViewController {
     }
 
     @objc func addButtonTapped(sender: Any) {
+        if tableView.numberOfRows(inSection: 0) > 0 {
+            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+        }
         setTableView(editing: false)
         coordinator.addCurrencyPair { [weak viewModel = self.viewModel] newPair in
             viewModel?.add(pair: newPair)
@@ -112,13 +115,19 @@ extension ExchangeRateListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        os_log(.info, log: Log.general, #function)
         viewModel.didStartEditingList()
     }
 
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-        os_log(.info, log: Log.general, #function)
         viewModel.didStopEditingList()
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return ExchangeRateListCell.defaultRowHeight
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return ExchangeRateListCell.defaultRowHeight
     }
 }
 
@@ -143,6 +152,4 @@ private final class TableDataSource: AnimatableListDatasource<ExchangeRate, Exch
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
-
 }

@@ -32,6 +32,8 @@ final class ExchangeRateListCell: NibReusableTableViewCell {
         }
         return resultString
     }
+
+    static let defaultRowHeight: CGFloat = 98.0
 }
 
 extension ExchangeRateListCell: ConfigurableCell {

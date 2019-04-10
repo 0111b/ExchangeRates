@@ -124,6 +124,7 @@ final class ExchangeRateListViewModel {
             switch result {
             case .success(let rates):
                 self?.ratesRelay.value = rates
+                self?.errorRelay.value = nil
             case .failure(let error):
                 self?.errorRelay.value = error
             }
