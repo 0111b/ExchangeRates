@@ -204,10 +204,10 @@
 		E610C396225A281C0096F5A8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E610C3B7225B3DA20096F5A8 /* ApplicationConfig.swift */,
 				E610C39C225A3FD40096F5A8 /* Currency.swift */,
 				E610C39E225A477A0096F5A8 /* CurrencyPair.swift */,
 				E610C3A0225A4B170096F5A8 /* ExchangeRate.swift */,
-				E610C3B7225B3DA20096F5A8 /* ApplicationConfig.swift */,
 				E610C3C0225B47150096F5A8 /* UserPreferences.swift */,
 			);
 			path = Models;
