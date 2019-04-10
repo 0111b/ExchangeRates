@@ -6,7 +6,6 @@ The sample app
 
 ipad
 
-
 add currency cancel and titles
 localize string
 main screen title

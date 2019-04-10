@@ -18,7 +18,8 @@ final class AddCurrencyPairFlow {
 
     func run(on presenter: UIViewController) {
         os_log(.default, log: Log.general, "AddCurrencyPairFlow start")
-        let selector = makeSelector(title: "First", disabled: Set()) { [self] currency in
+        let selector = makeSelector(title: "First", disabled: Set()) { [self] controller, currency in
+            controller.didSelectItem = { _, _ in }
             self.didSelectFirst(currency: currency)
         }
         navigationController = UINavigationController(rootViewController: selector)
@@ -32,7 +33,8 @@ final class AddCurrencyPairFlow {
                 .map { $0.second.code }
         )
         disabled.insert(firstCurrency.code)
-        let selector = makeSelector(title: "Second", disabled: disabled) { [self] secondCurrency in
+        let selector = makeSelector(title: "Second", disabled: disabled) { [self] controller, secondCurrency in
+            controller.didSelectItem = { _, _ in }
             self.didSelect(pair: CurrencyPair(first: firstCurrency, second: secondCurrency))
         }
         navigationController.pushViewController(selector, animated: true)
@@ -52,7 +54,7 @@ final class AddCurrencyPairFlow {
 
     private func makeSelector(title: String,
                               disabled: Set<Currency.Code>,
-                              action: @escaping (Currency) -> Void) -> CurrencySelectorViewController {
+                              action: @escaping (CurrencySelectorViewController, Currency) -> Void) -> CurrencySelectorViewController {
         let controller = CurrencySelectorViewController(currencies: availableCurrencies, disabled: disabled)
         controller.title = title
         controller.didSelectItem = action

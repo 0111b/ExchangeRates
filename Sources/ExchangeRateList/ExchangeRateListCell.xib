@@ -37,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Euro" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-so-wup">
-                        <rect key="frame" x="20" y="57" width="35" height="20.5"/>
+                        <rect key="frame" x="20" y="57" width="102" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -72,6 +72,7 @@
                     <constraint firstAttribute="bottom" secondItem="Yyo-so-wup" secondAttribute="bottom" constant="20" id="tFI-an-rOb"/>
                     <constraint firstItem="riD-CE-Www" firstAttribute="leading" secondItem="FS7-k7-e3p" secondAttribute="leading" constant="20" id="tiC-Oc-URF"/>
                     <constraint firstItem="0aR-jv-eLm" firstAttribute="trailing" secondItem="RZt-aZ-XeD" secondAttribute="trailing" id="vqq-DW-PSF"/>
+                    <constraint firstItem="Yyo-so-wup" firstAttribute="width" secondItem="0aR-jv-eLm" secondAttribute="width" id="wq9-SA-CT3"/>
                     <constraint firstItem="Yyo-so-wup" firstAttribute="top" secondItem="XBq-8C-YCd" secondAttribute="bottom" constant="6" id="yXU-YF-kk0"/>
                 </constraints>
             </tableViewCellContentView>
