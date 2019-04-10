@@ -16,7 +16,6 @@ dynamic fonts
 accesibility
 
 
-table refresh jump
 start/stop timer
 
 

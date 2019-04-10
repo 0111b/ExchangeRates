@@ -22,15 +22,19 @@ final class ExchangeRateListViewController: UIViewController {
     }
 
     override func loadView() {
-        self.view = tableView
+        self.view = UIView()
+        self.view.backgroundColor = .white
+        self.view.addSubview(contentView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(type(of: self).addButtonTapped(sender:)))
         self.navigationItem.leftBarButtonItem = editBarButtonItem
+        errorView.isHidden = true
         tableView.delegate = self
         tableView.dataSource = dataSource
+        setupConstraints()
         bind()
     }
 
@@ -74,10 +78,20 @@ final class ExchangeRateListViewController: UIViewController {
             os_log(.debug, log: Log.general, "Rates: %{public}@", rates.description)
             dataSource.set(items: rates)
         }.disposed(by: viewModel.disposeBag)
-        viewModel.error.observe(on: .main) { error in
-            guard let error = error else { return }
-            os_log(.error, log: Log.general, "Got error %@", error.localizedDescription)
+        viewModel.error.observe(on: .main) { [unowned self] error in
+            self.didRecieve(error: error)
         }.disposed(by: viewModel.disposeBag)
+    }
+
+    private func didRecieve(error: DataFetchError?) {
+        let errorMessage: String? = {
+            guard let error = error, !error.isNetworkCancel else { return nil }
+            let text = error.localizedDescription
+            os_log(.error, log: Log.general, "Got error %@", text)
+            return text
+        }()
+        errorView.isHidden = errorMessage == nil
+        errorView.text = errorMessage
     }
 
     private func setTableView(editing isEditing: Bool) {
@@ -91,10 +105,38 @@ final class ExchangeRateListViewController: UIViewController {
         }
     }
 
+    private func setupConstraints() {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        let guide = self.view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            guide.topAnchor.constraint(equalTo: contentView.topAnchor),
+            guide.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            guide.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            guide.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            ])
+    }
+
+    private lazy var contentView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [self.tableView, self.errorView])
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        return stackView
+    }()
+
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.separatorStyle = .none
         return table
+    }()
+
+    private lazy var errorView: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = .preferredFont(forTextStyle: .largeTitle)
+        label.backgroundColor = .red
+        label.textColor = .black
+        label.numberOfLines = 2
+        return label
     }()
 
     private lazy var editBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(type(of: self).editButtonTapped(sender:)))

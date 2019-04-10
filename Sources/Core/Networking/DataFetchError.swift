@@ -20,3 +20,23 @@ enum DataFetchError: Error {
     case invalidResponse(URLResponse?)
     case parsingError(Error)
 }
+
+extension DataFetchError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .invalidRequest: return Localized("DataFetchError.InvalidRequest")
+        case .networkError(let error): return error.localizedDescription
+        case .invalidResponse: return Localized("DataFetchError.InvalidResponse")
+        case .parsingError(let error): return error.localizedDescription
+        }
+    }
+}
+
+extension DataFetchError {
+    var isNetworkCancel: Bool {
+        guard case .networkError(let error) = self,
+            (error as NSError).code == NSURLErrorCancelled
+            else { return false }
+        return true
+    }
+}

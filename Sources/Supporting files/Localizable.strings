@@ -1,3 +1,5 @@
 "Currency.Error.InvalidCode" = "Invalid currency code: %@";
+"DataFetchError.InvalidRequest" = "Wrong request";
+"DataFetchError.InvalidResponse" = "Wrong response";
 "ExchangeRateList.Source.Description" = "<flag> %@";
 "ExchangeRateList.Destination.Description" = "%@ <flag>";
