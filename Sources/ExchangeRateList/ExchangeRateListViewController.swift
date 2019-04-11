@@ -14,7 +14,10 @@ final class ExchangeRateListViewController: UIViewController {
         self.coordinator = coordinator
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(type(of: self).didChangeContentSizeCategory(sender:)), name: UIContentSizeCategory.didChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(type(of: self).didChangeContentSizeCategory(sender:)),
+                                               name: UIContentSizeCategory.didChangeNotification,
+                                               object: nil)
     }
 
     deinit {

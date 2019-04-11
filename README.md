@@ -4,10 +4,7 @@ The sample app
 
 # TODO:
 
-ipad
-
-add currency cancel and titles
-
+dynamic height
 
 fonts sizes etc
 
@@ -15,6 +12,6 @@ splash
 app logo
 
  tests
- 
+ snapshot testing
 
 # Requirements

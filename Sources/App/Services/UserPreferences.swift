@@ -9,7 +9,7 @@
 import Foundation
 
 final class UserPreferences {
-    init(storage: KeyValueStorage = UserDefaultsStorage()) {
+    init(storage: KeyValueStorage) {
         self.storage = storage
     }
 
@@ -39,7 +39,7 @@ final class UserPreferences {
     }
 
     private let storage: KeyValueStorage
-    private var selectedPairsObservation: Disposable?
+    private var selectedPairsObservation = Disposable.empty
 
     private lazy var syncQueue = DispatchQueue(label: "com.revolut.UserPreferences.sync",
                                                qos: .utility,

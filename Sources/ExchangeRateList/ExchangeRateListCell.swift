@@ -18,7 +18,7 @@ final class ExchangeRateListCell: NibReusableTableViewCell {
     private func description(for currency: Currency, format: String) -> NSAttributedString {
         let text = Localized(format: format, currency.name ?? "")
         let font = UIFont.preferredFont(forTextStyle: .body)
-        let textColor = UIColor.black
+        let textColor = UIColor.darkGray
         let resultString = NSMutableAttributedString(string: text,
                                                      attributes: [
                                                         .font: font,

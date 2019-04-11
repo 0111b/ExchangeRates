@@ -167,7 +167,7 @@
 				E610C3B3225B3BF80096F5A8 /* Core */,
 				E610C3B4225B3C540096F5A8 /* App */,
 				E610C3B6225B3CDF0096F5A8 /* ExchangeRateList */,
-				E610C3D6225B7B570096F5A8 /* CurrencySelector */,
+				E610C3D6225B7B570096F5A8 /* AddCurrencyPair */,
 				E610C38A225A20F90096F5A8 /* Supporting files */,
 				E610C370225A1F680096F5A8 /* LaunchScreen.storyboard */,
 				E610C36E225A1F680096F5A8 /* Assets.xcassets */,
@@ -208,7 +208,6 @@
 				E610C39C225A3FD40096F5A8 /* Currency.swift */,
 				E610C39E225A477A0096F5A8 /* CurrencyPair.swift */,
 				E610C3A0225A4B170096F5A8 /* ExchangeRate.swift */,
-				E610C3C0225B47150096F5A8 /* UserPreferences.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,9 +241,9 @@
 			children = (
 				E610C367225A1F660096F5A8 /* AppDelegate.swift */,
 				E6969545225CA2E200F21B83 /* AppCoordinator.swift */,
-				E6725808225E88C000DFC261 /* Extensions */,
 				E610C396225A281C0096F5A8 /* Models */,
 				E610C3B5225B3C840096F5A8 /* Services */,
+				E6725808225E88C000DFC261 /* Extensions */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -252,6 +251,7 @@
 		E610C3B5225B3C840096F5A8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E610C3C0225B47150096F5A8 /* UserPreferences.swift */,
 				E610C3B1225B24B60096F5A8 /* ExchangeRateService.swift */,
 			);
 			path = Services;
@@ -298,7 +298,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E610C3D6225B7B570096F5A8 /* CurrencySelector */ = {
+		E610C3D6225B7B570096F5A8 /* AddCurrencyPair */ = {
 			isa = PBXGroup;
 			children = (
 				E63F7873225B8B9100E87AF3 /* AddCurrencyPairFlow.swift */,
@@ -306,7 +306,7 @@
 				E610C3D9225B7DA90096F5A8 /* CurrencySelectorCell.swift */,
 				E63F7871225B862200E87AF3 /* CurrencySelectorCell.xib */,
 			);
-			path = CurrencySelector;
+			path = AddCurrencyPair;
 			sourceTree = "<group>";
 		};
 		E6725808225E88C000DFC261 /* Extensions */ = {

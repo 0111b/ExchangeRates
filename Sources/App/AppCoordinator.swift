@@ -25,7 +25,7 @@ final class AppCoordinator {
     private let mainNavigation = UINavigationController()
 
     private lazy var preferences: UserPreferences = {
-        return UserPreferences()
+        return UserPreferences(storage: UserDefaultsStorage())
     }()
     
     private lazy var listCoordinator: ExchangeRateListCoordinator = {
