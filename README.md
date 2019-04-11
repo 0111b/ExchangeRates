@@ -4,8 +4,6 @@ The sample app
 
 # TODO:
 
-dynamic height
-
 fonts sizes etc
 
 splash

@@ -199,14 +199,6 @@ extension ExchangeRateListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
         viewModel.didStopEditingList()
     }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ExchangeRateListCell.defaultRowHeight
-    }
-
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ExchangeRateListCell.defaultRowHeight
-    }
 }
 
 private final class TableDataSource: AnimatableListDatasource<ExchangeRate, ExchangeRateListCell> {
