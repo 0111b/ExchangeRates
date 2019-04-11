@@ -18,39 +18,39 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="97.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riD-CE-Www">
-                        <rect key="frame" x="6" y="17.5" width="14" height="36"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riD-CE-Www">
+                        <rect key="frame" x="6" y="20" width="12" height="31.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="200" text="EUR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBq-8C-YCd">
-                        <rect key="frame" x="28" y="20" width="39" height="31"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                        <rect key="frame" x="26" y="20" width="39" height="31"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="200" text="GBP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZt-aZ-XeD">
                         <rect key="frame" x="369" y="20" width="39" height="31"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Euro" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-so-wup">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Euro" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-so-wup">
                         <rect key="frame" x="6" y="57" width="102" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="British Pound" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0aR-jv-eLm">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="British Pound" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aR-jv-eLm">
                         <rect key="frame" x="306" y="57" width="102" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.87" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzb-jm-qIR">
-                        <rect key="frame" x="295.5" y="17.5" width="61.5" height="36"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="0.87" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzb-jm-qIR">
+                        <rect key="frame" x="303.5" y="20" width="53.5" height="31.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -65,6 +65,7 @@
                     <constraint firstItem="RZt-aZ-XeD" firstAttribute="width" secondItem="XBq-8C-YCd" secondAttribute="width" id="SoD-hd-Epd"/>
                     <constraint firstAttribute="bottom" secondItem="0aR-jv-eLm" secondAttribute="bottom" constant="20" id="a1R-Zk-v2S"/>
                     <constraint firstItem="XBq-8C-YCd" firstAttribute="leading" secondItem="riD-CE-Www" secondAttribute="trailing" constant="8" id="dVl-gm-IGd"/>
+                    <constraint firstItem="mzb-jm-qIR" firstAttribute="centerY" secondItem="XBq-8C-YCd" secondAttribute="centerY" id="f3b-KT-zjf"/>
                     <constraint firstItem="mzb-jm-qIR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBq-8C-YCd" secondAttribute="trailing" constant="12" id="hCQ-us-WDg"/>
                     <constraint firstItem="RZt-aZ-XeD" firstAttribute="top" secondItem="FS7-k7-e3p" secondAttribute="top" constant="20" id="ji2-Jc-LMr"/>
                     <constraint firstItem="Yyo-so-wup" firstAttribute="leading" secondItem="riD-CE-Www" secondAttribute="leading" id="msK-kb-vBr"/>
@@ -74,7 +75,7 @@
                     <constraint firstAttribute="bottom" secondItem="Yyo-so-wup" secondAttribute="bottom" constant="20" id="tFI-an-rOb"/>
                     <constraint firstItem="riD-CE-Www" firstAttribute="leading" secondItem="FS7-k7-e3p" secondAttribute="leading" constant="20" id="tiC-Oc-URF"/>
                     <constraint firstItem="0aR-jv-eLm" firstAttribute="trailing" secondItem="RZt-aZ-XeD" secondAttribute="trailing" id="vqq-DW-PSF"/>
-                    <constraint firstItem="Yyo-so-wup" firstAttribute="width" secondItem="0aR-jv-eLm" secondAttribute="width" id="wq9-SA-CT3"/>
+                    <constraint firstItem="Yyo-so-wup" firstAttribute="width" secondItem="0aR-jv-eLm" secondAttribute="width" priority="750" id="wq9-SA-CT3"/>
                     <constraint firstItem="Yyo-so-wup" firstAttribute="top" secondItem="XBq-8C-YCd" secondAttribute="bottom" constant="6" id="yXU-YF-kk0"/>
                 </constraints>
                 <variation key="default">
