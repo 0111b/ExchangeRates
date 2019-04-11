@@ -14,6 +14,11 @@ final class ExchangeRateListViewController: UIViewController {
         self.coordinator = coordinator
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(type(of: self).didChangeContentSizeCategory(sender:)), name: UIContentSizeCategory.didChangeNotification, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     @available(*, unavailable)
@@ -63,7 +68,11 @@ final class ExchangeRateListViewController: UIViewController {
         setTableView(editing: !tableView.isEditing)
     }
 
-    // MARK: - Private -
+    @objc private func didChangeContentSizeCategory(sender: Any) {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
 
     private unowned let coordinator: ExchangeRateListCoordinator
     private let viewModel: ExchangeRateListViewModel
@@ -142,6 +151,7 @@ final class ExchangeRateListViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .largeTitle)
+        label.adjustsFontForContentSizeCategory = true
         label.backgroundColor = .red
         label.textColor = .black
         label.numberOfLines = 2
@@ -154,6 +164,7 @@ final class ExchangeRateListViewController: UIViewController {
         label.textAlignment = .center
         label.text = "Add currency"
         label.setContentHuggingPriority(.defaultLow, for: .vertical)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 

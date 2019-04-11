@@ -15,9 +15,15 @@ final class ExchangeRateListCell: NibReusableTableViewCell {
     @IBOutlet private weak var destinationSymbolLabel: UILabel?
     @IBOutlet private weak var destinationDescriptionLabel: UILabel?
 
-    private func description(for currency: Currency, font: UIFont, format: String) -> NSAttributedString {
+    private func description(for currency: Currency, format: String) -> NSAttributedString {
         let text = Localized(format: format, currency.name ?? "")
-        let resultString = NSMutableAttributedString(string: text)
+        let font = UIFont.preferredFont(forTextStyle: .body)
+        let textColor = UIColor.black
+        let resultString = NSMutableAttributedString(string: text,
+                                                     attributes: [
+                                                        .font: font,
+                                                        .foregroundColor: textColor
+            ])
         if let imageRange = text.range(of: "<flag>"),
            let image = currency.flagImage {
             let attatchment = NSTextAttachment()
@@ -41,14 +47,12 @@ extension ExchangeRateListCell: ConfigurableCell {
         sourceSymbolLabel?.text = rate.source.code
         sourceDescriptionLabel.map { label in
             label.attributedText = self.description(for: rate.source,
-                                                    font: label.font,
                                                     format: "ExchangeRateList.Source.Description")
         }
         destinationValueLabel?.text = "\(rate.rate)"
         destinationSymbolLabel?.text = rate.destination.code
         destinationDescriptionLabel.map { label in
             label.attributedText = self.description(for: rate.destination,
-                                                    font: label.font,
                                                     format: "ExchangeRateList.Destination.Description")
         }
     }
