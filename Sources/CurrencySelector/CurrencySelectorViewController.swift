@@ -20,7 +20,7 @@ final class CurrencySelectorViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    var didSelectItem: (CurrencySelectorViewController, Currency) -> Void = { _, _ in }
+    var didSelectItem: (Currency) -> Void = { _ in }
 
     private let currencies: [Currency]
     private let disabledCodes: Set<Currency.Code>
@@ -47,7 +47,7 @@ final class CurrencySelectorViewController: UITableViewController {
         let canSelect = self.canSelect(item)
         tableView.deselectRow(at: indexPath, animated: canSelect)
         if canSelect {
-            didSelectItem(self, item)
+            didSelectItem(item)
         }
     }
 

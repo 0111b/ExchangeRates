@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-final class AddCurrencyPairFlow {
+final class AddCurrencyPairFlow: NSObject {
     init(currencies: [Currency], existingPairs: [CurrencyPair], completion: @escaping (CurrencyPair) -> Void) {
         availableCurrencies = currencies
         self.existingPairs = existingPairs
@@ -19,13 +19,13 @@ final class AddCurrencyPairFlow {
     func run(on presenter: UIViewController, barButtonItem: UIBarButtonItem) {
         os_log(.default, log: Log.general, "AddCurrencyPairFlow start")
         let selector = makeSelector(title: Localized("AddCurrencyPairFlow.FirstCurrency.Selector.Title"),
-                                    disabled: Set()) { [self] controller, currency in
-            controller.didSelectItem = { _, _ in }
+                                    disabled: Set()) { [self] currency in
             self.didSelectFirst(currency: currency)
         }
         navigationController = UINavigationController(rootViewController: selector)
         navigationController.modalPresentationStyle = .popover
         navigationController.popoverPresentationController?.barButtonItem = barButtonItem
+        navigationController.popoverPresentationController?.delegate = self
         presenter.present(navigationController, animated: true)
     }
 
@@ -37,18 +37,29 @@ final class AddCurrencyPairFlow {
         )
         disabled.insert(firstCurrency.code)
         let selector = makeSelector(title: Localized("AddCurrencyPairFlow.SecondCurrency.Selector.Title"),
-                                    disabled: disabled) { [self] controller, secondCurrency in
-            controller.didSelectItem = { _, _ in }
+                                    disabled: disabled) { [self] secondCurrency in
             self.didSelect(pair: CurrencyPair(first: firstCurrency, second: secondCurrency))
         }
         navigationController.pushViewController(selector, animated: true)
     }
 
     private func didSelect(pair: CurrencyPair) {
+        cleanup()
         self.navigationController.dismiss(animated: true, completion: { [self] in
             os_log(.default, log: Log.general, "AddCurrencyPairFlow did finish %{public}@", pair.description)
             self.complete(pair)
         })
+    }
+
+    @objc private func didCancelFlow() {
+        cleanup()
+        self.navigationController.dismiss(animated: true)
+    }
+
+    private func cleanup() {
+        navigationController.viewControllers
+            .compactMap { $0 as? CurrencySelectorViewController }
+            .forEach { $0.didSelectItem = { _ in } }
     }
 
     private let availableCurrencies: [Currency]
@@ -58,10 +69,21 @@ final class AddCurrencyPairFlow {
 
     private func makeSelector(title: String,
                               disabled: Set<Currency.Code>,
-                              action: @escaping (CurrencySelectorViewController, Currency) -> Void) -> CurrencySelectorViewController {
+                              action: @escaping (Currency) -> Void) -> CurrencySelectorViewController {
         let controller = CurrencySelectorViewController(currencies: availableCurrencies, disabled: disabled)
         controller.title = title
         controller.didSelectItem = action
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                                          target: self,
+                                                                          action: #selector(type(of: self).didCancelFlow))
+        }
         return controller
+    }
+}
+
+extension AddCurrencyPairFlow: UIPopoverPresentationControllerDelegate {
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        cleanup()
     }
 }
