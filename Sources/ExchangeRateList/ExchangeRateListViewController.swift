@@ -39,8 +39,7 @@ final class ExchangeRateListViewController: UIViewController {
         super.viewDidLoad()
         self.title = Localized("ExchangeRateList.Title")
         self.navigationItem.rightBarButtonItem = addBarButtonItem
-        self.navigationItem.leftBarButtonItem = editBarButtonItem
-        errorView.isHidden = true
+        updateEditButtonItem()
         tableView.delegate = self
         tableView.dataSource = dataSource
         setupConstraints()
@@ -59,7 +58,7 @@ final class ExchangeRateListViewController: UIViewController {
     }
 
     @objc private func addButtonTapped(sender: UIBarButtonItem) {
-        if tableView.numberOfRows(inSection: 0) > 0 {
+        if !dataSource.items.isEmpty {
             tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         }
         setTableView(editing: false)
@@ -102,6 +101,7 @@ final class ExchangeRateListViewController: UIViewController {
         let isEmpty = rates.isEmpty
         tableView.isHidden = isEmpty
         emptyHintView.isHidden = !isEmpty
+        updateEditButtonItem()
     }
 
     private func didRecieve(error: DataFetchError?) {
@@ -119,14 +119,22 @@ final class ExchangeRateListViewController: UIViewController {
 
     private func setTableView(editing isEditing: Bool) {
         guard isEditing != tableView.isEditing else { return }
-        navigationItem.leftBarButtonItem = isEditing ? doneBarButtonItem : editBarButtonItem
         tableView.setEditing(isEditing, animated: true)
+        updateEditButtonItem()
         if isEditing {
             viewModel.didStartEditingList()
             errorView.isHidden = true
         } else {
             viewModel.didStopEditingList()
         }
+    }
+
+    private func updateEditButtonItem() {
+        let barButtonItem: UIBarButtonItem? = {
+            guard !dataSource.items.isEmpty else { return nil }
+            return tableView.isEditing ? doneBarButtonItem : editBarButtonItem
+        }()
+        self.navigationItem.leftBarButtonItem = barButtonItem
     }
 
     private func setupConstraints() {

@@ -52,9 +52,9 @@ where Cell: NibReusableTableViewCell {
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     }
 
+    fileprivate(set) var items = [Item]()
     private let configurator: CellConfigurator
     fileprivate unowned let tableView: UITableView
-    fileprivate var items = [Item]()
 }
 
 extension ListDatasource where Cell: ConfigurableCell, Cell.Model == Item {
