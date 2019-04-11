@@ -18,6 +18,7 @@ final class UserPreferences {
     var availableCurrencies: [Currency] {
         return self
             .get(for: .availableCurrencies, default: defaultCurrencies())
+            .sorted()
             .compactMap { try? CurrencyFactory.make(from: $0) }
     }
 

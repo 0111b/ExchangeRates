@@ -19,6 +19,10 @@ final class ExchangeRateService: ExchangeRateServiceProtocol {
     }
 
     func getRates(for pairs: [CurrencyPair], completion: @escaping (Result<[ExchangeRate], DataFetchError>) -> Void) -> Disposable {
+        guard !pairs.isEmpty else {
+            completion(.success([]))
+            return Disposable.empty
+        }
         guard let request = GetRatesRequest(pairs: pairs).buildRequest(against: baseURL) else {
             completion(.failure(.invalidRequest))
             return Disposable.empty

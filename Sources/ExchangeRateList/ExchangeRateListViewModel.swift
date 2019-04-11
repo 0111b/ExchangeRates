@@ -52,6 +52,11 @@ final class ExchangeRateListViewModel {
     }
 
     func add(pair: CurrencyPair) {
+        // Update UI
+        var rates = ratesRelay.value
+        rates.insert(ExchangeRate(rate: 0.0, currencies: pair), at: 0)
+        ratesRelay.value = rates
+        // Update model
         var pairs = selectedPairs.value
         pairs.insert(pair, at: 0)
         selectedPairs.value = pairs

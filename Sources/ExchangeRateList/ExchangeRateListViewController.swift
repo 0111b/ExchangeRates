@@ -75,13 +75,20 @@ final class ExchangeRateListViewController: UIViewController {
     }()
     
     private func bind() {
-        viewModel.rates.observe(on: .main) { [unowned dataSource = self.dataSource] rates in
-            os_log(.debug, log: Log.general, "Rates: %{public}@", rates.description)
-            dataSource.set(items: rates)
+        viewModel.rates.observe(on: .main) { [unowned self] rates in
+            self.didRecieve(rates: rates)
         }.disposed(by: viewModel.disposeBag)
         viewModel.error.observe(on: .main) { [unowned self] error in
             self.didRecieve(error: error)
         }.disposed(by: viewModel.disposeBag)
+    }
+
+    private func didRecieve(rates: [ExchangeRate]) {
+        os_log(.debug, log: Log.general, "Rates: %{public}@", rates.description)
+        dataSource.set(items: rates)
+        let isEmpty = rates.isEmpty
+        tableView.isHidden = isEmpty
+        emptyHintView.isHidden = !isEmpty
     }
 
     private func didRecieve(error: DataFetchError?) {
@@ -119,7 +126,7 @@ final class ExchangeRateListViewController: UIViewController {
     }
 
     private lazy var contentView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.tableView, self.errorView])
+        let stackView = UIStackView(arrangedSubviews: [self.emptyHintView, self.tableView, self.errorView])
         stackView.axis = .vertical
         stackView.spacing = 0
         return stackView
@@ -138,6 +145,15 @@ final class ExchangeRateListViewController: UIViewController {
         label.backgroundColor = .red
         label.textColor = .black
         label.numberOfLines = 2
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        return label
+    }()
+
+    private lazy var emptyHintView: UIView = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.text = "Add currency"
+        label.setContentHuggingPriority(.defaultLow, for: .vertical)
         return label
     }()
 
