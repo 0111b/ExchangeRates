@@ -11,14 +11,17 @@ import os.log
 
 final class ExchangeRateListViewModel {
     init(pairs: MutableObservable<[CurrencyPair]>,
+         refreshInterval: TimeInterval,
          service: ExchangeRateServiceProtocol = ExchangeRateService(config: ApplicationConfig.current),
          notificationCenter: NotificationCenter = .default) {
-        self.service = service
         self.selectedPairs = pairs
+        self.refreshInterval = refreshInterval
+        self.service = service
+        let rates = pairs.value.map { ExchangeRate(rate: 0.0, currencies: $0) }
+        ratesRelay = MutableObservable(value: rates)
         pairs.observe(skipCurrent: true) { [unowned self] _ in
             self.fetchRates()
         }.disposed(by: disposeBag)
-        ratesRelay.value = pairs.value.map { ExchangeRate(rate: 0.0, currencies: $0) }
         registerForSystemNotifications(with: notificationCenter)
     }
 
@@ -26,7 +29,7 @@ final class ExchangeRateListViewModel {
 
     // MARK: - Output -
 
-    private let ratesRelay = MutableObservable<[ExchangeRate]>(value: [])
+    private let ratesRelay: MutableObservable<[ExchangeRate]>
     var rates: Observable<[ExchangeRate]> { return ratesRelay.asObservable() }
     private let errorRelay = MutableObservable<DataFetchError?>(value: nil)
     var error: Observable<DataFetchError?> { return errorRelay.asObservable() }
@@ -98,13 +101,13 @@ final class ExchangeRateListViewModel {
     }
 
     // MARK: Timer
-
+    private let refreshInterval: TimeInterval
     private var refreshTimer = Disposable.empty
 
     private func startTimer() {
         guard refreshTimer.isEmpty else { return }
         os_log(.info, log: Log.general, "Start refresh timer")
-        refreshTimer = Timer.schedule(interval: 1.0).observe(on: .main) { [unowned self] in
+        refreshTimer = Timer.schedule(interval: refreshInterval).observe(on: .main) { [unowned self] in
             self.fetchRates()
         }
     }

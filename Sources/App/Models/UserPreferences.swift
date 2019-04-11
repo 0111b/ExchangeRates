@@ -13,7 +13,9 @@ final class UserPreferences {
         self.storage = storage
     }
 
-    private(set) lazy var selectedPairs: MutableObservable<[CurrencyPair]> = self.makeSelectedPairs()
+    var refreshInterval: TimeInterval {
+        return self.get(for: .refreshInterval, default: 1.0)
+    }
 
     var availableCurrencies: [Currency] {
         return self
@@ -21,6 +23,8 @@ final class UserPreferences {
             .sorted()
             .compactMap { try? CurrencyFactory.make(from: $0) }
     }
+
+    private(set) lazy var selectedPairs: MutableObservable<[CurrencyPair]> = self.makeSelectedPairs()
 
     // MARK: - Private interface -
 
@@ -55,6 +59,7 @@ final class UserPreferences {
 
     private enum PreferencesKey: String {
         case selectedCurrencyPairs
+        case refreshInterval
         case availableCurrencies
     }
 }

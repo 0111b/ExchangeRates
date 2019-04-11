@@ -29,7 +29,9 @@ final class ExchangeRateListCoordinator {
 
     private func makeListController() -> ExchangeRateListViewController {
         let service = ExchangeRateService(config: ApplicationConfig.current, fetcher: BasicNetworkFetcher())
-        let viewModel = ExchangeRateListViewModel(pairs: preferences.selectedPairs, service: service)
+        let viewModel = ExchangeRateListViewModel(pairs: preferences.selectedPairs,
+                                                  refreshInterval: preferences.refreshInterval,
+                                                  service: service)
         return ExchangeRateListViewController(coordinator: self, viewModel: viewModel)
     }
 

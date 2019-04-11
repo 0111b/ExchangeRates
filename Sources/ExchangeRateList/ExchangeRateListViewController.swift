@@ -49,7 +49,7 @@ final class ExchangeRateListViewController: UIViewController {
         viewModel.viewDidDissapear()
     }
 
-    @objc func addButtonTapped(sender: UIBarButtonItem) {
+    @objc private func addButtonTapped(sender: UIBarButtonItem) {
         if tableView.numberOfRows(inSection: 0) > 0 {
             tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         }
@@ -59,7 +59,7 @@ final class ExchangeRateListViewController: UIViewController {
         }
     }
 
-    @objc func editButtonTapped(sender: Any) {
+    @objc private func editButtonTapped(sender: Any) {
         setTableView(editing: !tableView.isEditing)
     }
 
