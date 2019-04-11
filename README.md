@@ -14,9 +14,7 @@ dynamic fonts
 reading area
 accesibility
 
-start/stop timer
  tests
  
- empty state
 
 # Requirements

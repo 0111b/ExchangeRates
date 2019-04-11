@@ -52,36 +52,27 @@ final class ExchangeRateListViewModel {
     }
 
     func add(pair: CurrencyPair) {
-        // Update UI
-        var rates = ratesRelay.value
-        rates.insert(ExchangeRate(rate: 0.0, currencies: pair), at: 0)
-        ratesRelay.value = rates
-        // Update model
-        var pairs = selectedPairs.value
-        pairs.insert(pair, at: 0)
-        selectedPairs.value = pairs
+        func update<Value>(_ list: inout [Value], item: Value) {
+            list.insert(item, at: 0)
+        }
+        update(&ratesRelay.value, item: ExchangeRate(rate: 0.0, currencies: pair))
+        update(&selectedPairs.value, item: pair)
     }
 
     func removePair(at index: Int) {
-        // Update UI
-        var rates = ratesRelay.value
-        rates.remove(at: index)
-        ratesRelay.value = rates
-        // Update model
-        var pairs = selectedPairs.value
-        pairs.remove(at: index)
-        selectedPairs.value = pairs
+        func update<Value>(_ list: inout [Value]) {
+            list.remove(at: index)
+        }
+        update(&ratesRelay.value)
+        update(&selectedPairs.value)
     }
 
     func movePair(from source: Int, to destination: Int) {
-        // Update UI
-        var rates = ratesRelay.value
-        rates.swapAt(source, destination)
-        ratesRelay.value = rates
-        // Update model
-        var pairs = selectedPairs.value
-        pairs.swapAt(source, destination)
-        selectedPairs.value = pairs
+        func update<Value>(_ list: inout [Value]) {
+            list.swapAt(source, destination)
+        }
+        update(&ratesRelay.value)
+        update(&selectedPairs.value)
     }
 
     // MARK: - Private -
