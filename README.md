@@ -4,7 +4,6 @@ The sample app
 
 # TODO:
 
-
  tests
  snapshot testing
 

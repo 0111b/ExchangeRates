@@ -6,5 +6,6 @@
 "ExchangeRateList.Source.Description" = "<flag> %@";
 "ExchangeRateList.Destination.Description" = "<flag> %@";
 "ExchangeRateList.AccessibilityLabel" = "1 %@ is equal to %.2f %@";
+"ExchangeRateList.Error.Message" = "⚠️ %@";
 "AddCurrencyPairFlow.FirstCurrency.Selector.Title" = "Choose source currency";
 "AddCurrencyPairFlow.SecondCurrency.Selector.Title" = "Choose destination currency";

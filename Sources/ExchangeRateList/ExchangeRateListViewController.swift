@@ -112,7 +112,9 @@ final class ExchangeRateListViewController: UIViewController {
             return text
         }()
         errorView.isHidden = errorMessage == nil
-        errorView.text = errorMessage
+        errorMessage.map {
+            errorView.text = Localized(format: "ExchangeRateList.Error.Message", $0)
+        }
     }
 
     private func setTableView(editing isEditing: Bool) {
@@ -154,11 +156,11 @@ final class ExchangeRateListViewController: UIViewController {
     private lazy var errorView: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = .preferredFont(forTextStyle: .largeTitle)
+        label.font = .preferredFont(forTextStyle: .caption1)
         label.adjustsFontForContentSizeCategory = true
-        label.backgroundColor = .red
-        label.textColor = .black
         label.numberOfLines = 2
+        label.backgroundColor = .white
+        label.textColor = .red
         label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return label
     }()
@@ -169,7 +171,7 @@ final class ExchangeRateListViewController: UIViewController {
         label.text = Localized("ExchangeRateList.Empty.Hint")
         label.numberOfLines = 0
         label.setContentHuggingPriority(.defaultLow, for: .vertical)
-        label.font = .preferredFont(forTextStyle: .title1)
+        label.font = .preferredFont(forTextStyle: .title3)
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
