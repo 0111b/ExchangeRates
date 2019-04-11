@@ -9,21 +9,30 @@
 import Foundation
 
 final class Disposable {
-    private let dispose: () -> Void
 
     init(_ dispose: @escaping () -> Void) {
         self.dispose = dispose
+        isEmpty = false
+    }
+
+    let isEmpty: Bool
+
+    class var empty: Disposable { return Disposable() }
+
+    func disposed(by bag: DisposeBag) {
+        bag.insert(disposable: self)
     }
 
     deinit {
         dispose()
     }
 
-    func disposed(by bag: DisposeBag) {
-        bag.insert(disposable: self)
-    }
+    private let dispose: () -> Void
 
-    class var empty: Disposable { return Disposable { } }
+    private init() {
+        dispose = { }
+        isEmpty = true
+    }
 }
 
 final class DisposeBag {
@@ -31,5 +40,9 @@ final class DisposeBag {
 
     func insert(disposable: Disposable) {
         disposables.append(disposable)
+    }
+
+    func dispose() {
+        disposables = []
     }
 }

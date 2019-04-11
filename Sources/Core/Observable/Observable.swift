@@ -22,12 +22,14 @@ class Observable<Value> {
         return self
     }
 
-    func observe(on queue: DispatchQueue? = nil, _ observer: @escaping Observer) -> Disposable {
+    func observe(on queue: DispatchQueue? = nil, skipCurrent: Bool = false, _ observer: @escaping Observer) -> Disposable {
         self.lock()
         defer { self.unlock() }
         let id = UUID()
         observations[id] = (observer, queue)
-        observer(value)
+        if !skipCurrent {
+            observer(value)
+        }
         return Disposable { [weak self] in
             self?.observations.removeValue(forKey: id)
             self?.onDispose()

@@ -15,7 +15,7 @@ final class ExchangeRateListViewModel {
          notificationCenter: NotificationCenter = .default) {
         self.service = service
         self.selectedPairs = pairs
-        pairs.observe { [unowned self] _ in
+        pairs.observe(skipCurrent: true) { [unowned self] _ in
             self.fetchRates()
         }.disposed(by: disposeBag)
         ratesRelay.value = pairs.value.map { ExchangeRate(rate: 0.0, currencies: $0) }
@@ -106,6 +106,7 @@ final class ExchangeRateListViewModel {
     private var refreshTimer = Disposable.empty
 
     private func startTimer() {
+        guard refreshTimer.isEmpty else { return }
         os_log(.info, log: Log.general, "Start refresh timer")
         refreshTimer = Timer.schedule(interval: 1.0).observe(on: .main) { [unowned self] in
             self.fetchRates()

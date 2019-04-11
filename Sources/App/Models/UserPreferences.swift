@@ -26,8 +26,9 @@ final class UserPreferences {
     private func makeSelectedPairs() -> MutableObservable<[CurrencyPair]> {
         let pairs: [CurrencyPair] = self.get(for: .selectedCurrencyPairs, default: [])
         let observable = MutableObservable<[CurrencyPair]>(value: pairs)
-        self.selectedPairsObservation = observable.observe { [unowned self] pairs in
-            self.set(pairs, for: .selectedCurrencyPairs)
+        self.selectedPairsObservation = observable
+            .observe(skipCurrent: true) { [unowned self] pairs in
+                self.set(pairs, for: .selectedCurrencyPairs)
         }
         return observable
     }
