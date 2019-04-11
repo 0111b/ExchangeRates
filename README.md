@@ -11,7 +11,7 @@ localize string
 main screen title
 fonts sizes etc
 dynamic fonts
-
+reading area
 accesibility
 
 start/stop timer

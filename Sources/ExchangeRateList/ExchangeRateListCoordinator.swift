@@ -16,7 +16,7 @@ final class ExchangeRateListCoordinator {
     }
 
     func start() {
-        os_log(.info, log: Log.general, "ExchangeRateListCoordinator start")
+        os_log(.default, log: Log.general, "ExchangeRateListCoordinator start")
         navigationController.pushViewController(makeListController(), animated: true)
     }
 

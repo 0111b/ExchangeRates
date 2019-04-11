@@ -15,7 +15,7 @@ final class AppCoordinator {
     }
 
     func start() {
-        os_log(.info, log: Log.general, "AppCoordinator start")
+        os_log(.default, log: Log.general, "AppCoordinator start")
         window.rootViewController = mainNavigation
         listCoordinator.start()
         window.makeKeyAndVisible()

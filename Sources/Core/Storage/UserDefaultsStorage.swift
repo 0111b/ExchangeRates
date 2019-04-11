@@ -17,7 +17,7 @@ final class UserDefaultsStorage: KeyValueStorage {
     private let storage: UserDefaults
 
     func set<Value>(_ value: Value, for key: String) where Value: Codable {
-        os_log(.info, log: Log.persistence, "UserDefaultsStorage: set value <%@>", key)
+        os_log(.info, log: Log.persistence, "UserDefaultsStorage: set value %@", key)
         guard let data = try? PropertyListEncoder().encode(Box(value: value)) else {
             os_log(.error, log: Log.persistence, "Error encoding %{public}@", "\(type(of: value))")
             return
@@ -26,7 +26,7 @@ final class UserDefaultsStorage: KeyValueStorage {
     }
 
     func get<Value>(for key: String, default defaultValue: Value) -> Value where Value: Codable {
-        os_log(.debug, log: Log.persistence, "UserDefaultsStorage: get value <%@>", key)
+        os_log(.debug, log: Log.persistence, "UserDefaultsStorage: get value %@", key)
         guard let data = storage.data(forKey: key) else {
             return defaultValue
         }
