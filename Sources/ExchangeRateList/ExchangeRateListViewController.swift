@@ -29,7 +29,7 @@ final class ExchangeRateListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(type(of: self).addButtonTapped(sender:)))
+        self.navigationItem.rightBarButtonItem = addBarButtonItem
         self.navigationItem.leftBarButtonItem = editBarButtonItem
         errorView.isHidden = true
         tableView.delegate = self
@@ -49,12 +49,12 @@ final class ExchangeRateListViewController: UIViewController {
         viewModel.viewDidDissapear()
     }
 
-    @objc func addButtonTapped(sender: Any) {
+    @objc func addButtonTapped(sender: UIBarButtonItem) {
         if tableView.numberOfRows(inSection: 0) > 0 {
             tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         }
         setTableView(editing: false)
-        coordinator.addCurrencyPair { [weak viewModel = self.viewModel] newPair in
+        coordinator.addCurrencyPair(sender: sender) { [weak viewModel = self.viewModel] newPair in
             viewModel?.add(pair: newPair)
         }
     }
@@ -159,6 +159,7 @@ final class ExchangeRateListViewController: UIViewController {
 
     private lazy var editBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(type(of: self).editButtonTapped(sender:)))
     private lazy var doneBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(type(of: self).editButtonTapped(sender:)))
+    private lazy var addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(type(of: self).addButtonTapped(sender:)))
 }
 
 extension ExchangeRateListViewController: UITableViewDelegate {

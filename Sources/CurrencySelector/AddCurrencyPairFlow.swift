@@ -16,13 +16,15 @@ final class AddCurrencyPairFlow {
         complete = completion
     }
 
-    func run(on presenter: UIViewController) {
+    func run(on presenter: UIViewController, barButtonItem: UIBarButtonItem) {
         os_log(.default, log: Log.general, "AddCurrencyPairFlow start")
         let selector = makeSelector(title: "First", disabled: Set()) { [self] controller, currency in
             controller.didSelectItem = { _, _ in }
             self.didSelectFirst(currency: currency)
         }
         navigationController = UINavigationController(rootViewController: selector)
+        navigationController.modalPresentationStyle = .popover
+        navigationController.popoverPresentationController?.barButtonItem = barButtonItem
         presenter.present(navigationController, animated: true)
     }
 

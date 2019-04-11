@@ -20,11 +20,11 @@ final class ExchangeRateListCoordinator {
         navigationController.pushViewController(makeListController(), animated: true)
     }
 
-    func addCurrencyPair(success: @escaping (CurrencyPair) -> Void) {
+    func addCurrencyPair(sender barButtonItem: UIBarButtonItem, success: @escaping (CurrencyPair) -> Void) {
         let flow = AddCurrencyPairFlow(currencies: preferences.availableCurrencies,
                                        existingPairs: preferences.selectedPairs.value,
                                        completion: success)
-        flow.run(on: navigationController)
+        flow.run(on: navigationController, barButtonItem: barButtonItem)
     }
 
     private func makeListController() -> ExchangeRateListViewController {
