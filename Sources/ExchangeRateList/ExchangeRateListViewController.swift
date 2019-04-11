@@ -116,7 +116,7 @@ final class ExchangeRateListViewController: UIViewController {
 
     private func setupConstraints() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        let guide = self.view.safeAreaLayoutGuide
+        let guide = self.view.readableContentGuide
         NSLayoutConstraint.activate([
             guide.topAnchor.constraint(equalTo: contentView.topAnchor),
             guide.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

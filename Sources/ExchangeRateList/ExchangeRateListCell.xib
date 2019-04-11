@@ -19,37 +19,37 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riD-CE-Www">
-                        <rect key="frame" x="20" y="17.5" width="14" height="36"/>
+                        <rect key="frame" x="6" y="17.5" width="14" height="36"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="200" text="EUR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBq-8C-YCd">
-                        <rect key="frame" x="42" y="20" width="39" height="31"/>
+                        <rect key="frame" x="28" y="20" width="39" height="31"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="200" text="GBP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZt-aZ-XeD">
-                        <rect key="frame" x="363" y="20" width="39" height="31"/>
+                        <rect key="frame" x="369" y="20" width="39" height="31"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Euro" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-so-wup">
-                        <rect key="frame" x="20" y="57" width="102" height="20.5"/>
+                        <rect key="frame" x="6" y="57" width="102" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="British Pound" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0aR-jv-eLm">
-                        <rect key="frame" x="300" y="57" width="102" height="20.5"/>
+                        <rect key="frame" x="306" y="57" width="102" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.87" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzb-jm-qIR">
-                        <rect key="frame" x="289.5" y="17.5" width="61.5" height="36"/>
+                        <rect key="frame" x="295.5" y="17.5" width="61.5" height="36"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -58,15 +58,17 @@
                 <constraints>
                     <constraint firstItem="XBq-8C-YCd" firstAttribute="top" secondItem="FS7-k7-e3p" secondAttribute="top" constant="20" id="3np-8i-YKz"/>
                     <constraint firstItem="0aR-jv-eLm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yyo-so-wup" secondAttribute="trailing" constant="6" id="7gl-5c-6gU"/>
-                    <constraint firstAttribute="trailing" secondItem="RZt-aZ-XeD" secondAttribute="trailing" constant="12" id="9XK-UH-z2T"/>
+                    <constraint firstAttribute="trailing" secondItem="RZt-aZ-XeD" secondAttribute="trailing" constant="20" id="9XK-UH-z2T"/>
                     <constraint firstItem="RZt-aZ-XeD" firstAttribute="leading" secondItem="mzb-jm-qIR" secondAttribute="trailing" constant="12" id="Jdm-Dz-wxw"/>
                     <constraint firstItem="0aR-jv-eLm" firstAttribute="top" secondItem="RZt-aZ-XeD" secondAttribute="bottom" constant="6" id="MSf-Pw-2Rp"/>
+                    <constraint firstItem="riD-CE-Www" firstAttribute="leading" secondItem="FS7-k7-e3p" secondAttribute="leading" constant="6" id="R6C-w0-1wu"/>
                     <constraint firstItem="RZt-aZ-XeD" firstAttribute="width" secondItem="XBq-8C-YCd" secondAttribute="width" id="SoD-hd-Epd"/>
                     <constraint firstAttribute="bottom" secondItem="0aR-jv-eLm" secondAttribute="bottom" constant="20" id="a1R-Zk-v2S"/>
                     <constraint firstItem="XBq-8C-YCd" firstAttribute="leading" secondItem="riD-CE-Www" secondAttribute="trailing" constant="8" id="dVl-gm-IGd"/>
                     <constraint firstItem="mzb-jm-qIR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBq-8C-YCd" secondAttribute="trailing" constant="12" id="hCQ-us-WDg"/>
                     <constraint firstItem="RZt-aZ-XeD" firstAttribute="top" secondItem="FS7-k7-e3p" secondAttribute="top" constant="20" id="ji2-Jc-LMr"/>
                     <constraint firstItem="Yyo-so-wup" firstAttribute="leading" secondItem="riD-CE-Www" secondAttribute="leading" id="msK-kb-vBr"/>
+                    <constraint firstAttribute="trailing" secondItem="RZt-aZ-XeD" secondAttribute="trailing" constant="6" id="no3-HS-GQ6"/>
                     <constraint firstItem="riD-CE-Www" firstAttribute="centerY" secondItem="XBq-8C-YCd" secondAttribute="centerY" id="ri1-DP-QFb"/>
                     <constraint firstItem="mzb-jm-qIR" firstAttribute="centerY" secondItem="RZt-aZ-XeD" secondAttribute="centerY" id="s2n-S8-wdD"/>
                     <constraint firstAttribute="bottom" secondItem="Yyo-so-wup" secondAttribute="bottom" constant="20" id="tFI-an-rOb"/>
@@ -75,6 +77,20 @@
                     <constraint firstItem="Yyo-so-wup" firstAttribute="width" secondItem="0aR-jv-eLm" secondAttribute="width" id="wq9-SA-CT3"/>
                     <constraint firstItem="Yyo-so-wup" firstAttribute="top" secondItem="XBq-8C-YCd" secondAttribute="bottom" constant="6" id="yXU-YF-kk0"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="R6C-w0-1wu"/>
+                        <exclude reference="no3-HS-GQ6"/>
+                    </mask>
+                </variation>
+                <variation key="widthClass=compact">
+                    <mask key="constraints">
+                        <include reference="R6C-w0-1wu"/>
+                        <exclude reference="tiC-Oc-URF"/>
+                        <exclude reference="9XK-UH-z2T"/>
+                        <include reference="no3-HS-GQ6"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="destinationDescriptionLabel" destination="0aR-jv-eLm" id="8fq-8c-DrO"/>
