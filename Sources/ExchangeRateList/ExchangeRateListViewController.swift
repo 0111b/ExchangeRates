@@ -34,6 +34,7 @@ final class ExchangeRateListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = Localized("ExchangeRateList.Title")
         self.navigationItem.rightBarButtonItem = addBarButtonItem
         self.navigationItem.leftBarButtonItem = editBarButtonItem
         errorView.isHidden = true
@@ -162,8 +163,10 @@ final class ExchangeRateListViewController: UIViewController {
     private lazy var emptyHintView: UIView = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "Add currency"
+        label.text = Localized("ExchangeRateList.Empty.Hint")
+        label.numberOfLines = 0
         label.setContentHuggingPriority(.defaultLow, for: .vertical)
+        label.font = .preferredFont(forTextStyle: .title1)
         label.adjustsFontForContentSizeCategory = true
         return label
     }()

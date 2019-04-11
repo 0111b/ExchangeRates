@@ -24,3 +24,8 @@ func Localized(format: String, _ value: CVarArg) -> String {
 func Localized(format: String, _ value1: CVarArg, _ value2: CVarArg) -> String {
     return String.localizedStringWithFormat(Localized(format), value1, value2)
 }
+
+// swiftlint:disable:next identifier_name
+func Localized(format: String, _ value1: CVarArg, _ value2: CVarArg, _ value3: CVarArg) -> String {
+    return String.localizedStringWithFormat(Localized(format), value1, value2, value3)
+}

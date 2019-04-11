@@ -55,5 +55,10 @@ extension ExchangeRateListCell: ConfigurableCell {
             label.attributedText = self.description(for: rate.destination,
                                                     format: "ExchangeRateList.Destination.Description")
         }
+        let accesibilityName: (Currency) -> String = {
+            return $0.name ?? $0.code
+        }
+        self.accessibilityLabel = Localized(format: "ExchangeRateList.AccessibilityLabel",
+                                            accesibilityName(rate.source), rate.rate, accesibilityName(rate.destination))
     }
 }

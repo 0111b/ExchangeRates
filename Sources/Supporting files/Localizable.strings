@@ -1,5 +1,10 @@
 "Currency.Error.InvalidCode" = "Invalid currency code: %@";
 "DataFetchError.InvalidRequest" = "Wrong request";
-"DataFetchError.InvalidResponse" = "Wrong response";
+"DataFetchError.InvalidResponse" = "Wrong server response";
+"ExchangeRateList.Title" = "Exchange rates";
+"ExchangeRateList.Empty.Hint" = "Add a currency pair to compare their live rates";
 "ExchangeRateList.Source.Description" = "<flag> %@";
 "ExchangeRateList.Destination.Description" = "%@ <flag>";
+"ExchangeRateList.AccessibilityLabel" = "1 %@ is equal to %.2f %@";
+"AddCurrencyPairFlow.FirstCurrency.Selector.Title" = "Choose source currency";
+"AddCurrencyPairFlow.SecondCurrency.Selector.Title" = "Choose destination currency";

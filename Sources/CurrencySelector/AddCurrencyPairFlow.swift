@@ -18,7 +18,8 @@ final class AddCurrencyPairFlow {
 
     func run(on presenter: UIViewController, barButtonItem: UIBarButtonItem) {
         os_log(.default, log: Log.general, "AddCurrencyPairFlow start")
-        let selector = makeSelector(title: "First", disabled: Set()) { [self] controller, currency in
+        let selector = makeSelector(title: Localized("AddCurrencyPairFlow.FirstCurrency.Selector.Title"),
+                                    disabled: Set()) { [self] controller, currency in
             controller.didSelectItem = { _, _ in }
             self.didSelectFirst(currency: currency)
         }
@@ -35,7 +36,8 @@ final class AddCurrencyPairFlow {
                 .map { $0.second.code }
         )
         disabled.insert(firstCurrency.code)
-        let selector = makeSelector(title: "Second", disabled: disabled) { [self] controller, secondCurrency in
+        let selector = makeSelector(title: Localized("AddCurrencyPairFlow.SecondCurrency.Selector.Title"),
+                                    disabled: disabled) { [self] controller, secondCurrency in
             controller.didSelectItem = { _, _ in }
             self.didSelect(pair: CurrencyPair(first: firstCurrency, second: secondCurrency))
         }
