@@ -39,7 +39,7 @@ final class ExchangeRateListViewController: UIViewController {
         super.viewDidLoad()
         self.title = Localized("ExchangeRateList.Title")
         self.navigationItem.rightBarButtonItem = addBarButtonItem
-        setLeftButtonItem(isEditing: false)
+        setLeftButtonItem(editing: false)
         tableView.delegate = self
         tableView.dataSource = dataSource
         setupConstraints()
@@ -120,7 +120,7 @@ final class ExchangeRateListViewController: UIViewController {
 
     private func setTableView(editing isEditing: Bool) {
         if isEditing { errorView.isHidden = true }
-        setLeftButtonItem(isEditing: isEditing)
+        setLeftButtonItem(editing: isEditing)
         guard isEditing != tableView.isEditing else { return }
         tableView.setEditing(isEditing, animated: true)
         if isEditing {
@@ -131,7 +131,7 @@ final class ExchangeRateListViewController: UIViewController {
         }
     }
 
-    private func setLeftButtonItem(isEditing: Bool) {
+    private func setLeftButtonItem(editing isEditing: Bool) {
         self.navigationItem.leftBarButtonItem = isEditing ? doneBarButtonItem : editBarButtonItem
     }
 
@@ -201,12 +201,12 @@ extension ExchangeRateListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        setLeftButtonItem(isEditing: true)
+        setLeftButtonItem(editing: true)
         viewModel.didStartEditingList()
     }
 
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-        setLeftButtonItem(isEditing: false)
+        setLeftButtonItem(editing: false)
         viewModel.didStopEditingList()
     }
 }
