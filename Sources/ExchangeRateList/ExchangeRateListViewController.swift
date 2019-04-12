@@ -39,7 +39,7 @@ final class ExchangeRateListViewController: UIViewController {
         super.viewDidLoad()
         self.title = Localized("ExchangeRateList.Title")
         self.navigationItem.rightBarButtonItem = addBarButtonItem
-        updateEditButtonItem()
+        setLeftButtonItem(isEditing: false)
         tableView.delegate = self
         tableView.dataSource = dataSource
         setupConstraints()
@@ -101,7 +101,8 @@ final class ExchangeRateListViewController: UIViewController {
         let isEmpty = rates.isEmpty
         tableView.isHidden = isEmpty
         emptyHintView.isHidden = !isEmpty
-        updateEditButtonItem()
+        editBarButtonItem.isEnabled = !isEmpty
+        doneBarButtonItem.isEnabled = !isEmpty
     }
 
     private func didRecieve(error: DataFetchError?) {
@@ -118,9 +119,10 @@ final class ExchangeRateListViewController: UIViewController {
     }
 
     private func setTableView(editing isEditing: Bool) {
+        if isEditing { errorView.isHidden = true }
+        setLeftButtonItem(isEditing: isEditing)
         guard isEditing != tableView.isEditing else { return }
         tableView.setEditing(isEditing, animated: true)
-        updateEditButtonItem()
         if isEditing {
             viewModel.didStartEditingList()
             errorView.isHidden = true
@@ -129,12 +131,8 @@ final class ExchangeRateListViewController: UIViewController {
         }
     }
 
-    private func updateEditButtonItem() {
-        let barButtonItem: UIBarButtonItem? = {
-            guard !dataSource.items.isEmpty else { return nil }
-            return tableView.isEditing ? doneBarButtonItem : editBarButtonItem
-        }()
-        self.navigationItem.leftBarButtonItem = barButtonItem
+    private func setLeftButtonItem(isEditing: Bool) {
+        self.navigationItem.leftBarButtonItem = isEditing ? doneBarButtonItem : editBarButtonItem
     }
 
     private func setupConstraints() {
@@ -203,10 +201,12 @@ extension ExchangeRateListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        setLeftButtonItem(isEditing: true)
         viewModel.didStartEditingList()
     }
 
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        setLeftButtonItem(isEditing: false)
         viewModel.didStopEditingList()
     }
 }
