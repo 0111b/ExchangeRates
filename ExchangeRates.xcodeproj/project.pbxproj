@@ -25,7 +25,6 @@
 		E610C36A225A1F660096F5A8 /* ExchangeRateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C369225A1F660096F5A8 /* ExchangeRateListViewController.swift */; };
 		E610C36F225A1F680096F5A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E610C36E225A1F680096F5A8 /* Assets.xcassets */; };
 		E610C372225A1F680096F5A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E610C370225A1F680096F5A8 /* LaunchScreen.storyboard */; };
-		E610C37D225A1F690096F5A8 /* ExchangeRatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C37C225A1F690096F5A8 /* ExchangeRatesTests.swift */; };
 		E610C39B225A3F970096F5A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E610C39A225A3F970096F5A8 /* Localizable.strings */; };
 		E610C39D225A3FD40096F5A8 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C39C225A3FD40096F5A8 /* Currency.swift */; };
 		E610C39F225A477A0096F5A8 /* CurrencyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = E610C39E225A477A0096F5A8 /* CurrencyPair.swift */; };
@@ -51,6 +50,9 @@
 		E63F7872225B862200E87AF3 /* CurrencySelectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E63F7871225B862200E87AF3 /* CurrencySelectorCell.xib */; };
 		E63F7874225B8B9100E87AF3 /* AddCurrencyPairFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63F7873225B8B9100E87AF3 /* AddCurrencyPairFlow.swift */; };
 		E672580A225E88DA00DFC261 /* Currency+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6725809225E88DA00DFC261 /* Currency+Image.swift */; };
+		E68EE2D7226246D300FB28AC /* ISOCurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68EE2D6226246D300FB28AC /* ISOCurrencyTests.swift */; };
+		E68EE2D922624A4400FB28AC /* CurrencyPairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68EE2D822624A4400FB28AC /* CurrencyPairTests.swift */; };
+		E68EE2E02262633F00FB28AC /* UserDefaultsStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68EE2DF2262633F00FB28AC /* UserDefaultsStorageTests.swift */; };
 		E6969544225C8A5C00F21B83 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969543225C8A5C00F21B83 /* Log.swift */; };
 		E6969546225CA2E200F21B83 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969545225CA2E200F21B83 /* AppCoordinator.swift */; };
 		E6969548225CA83700F21B83 /* ExchangeRateListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6969547225CA83700F21B83 /* ExchangeRateListCoordinator.swift */; };
@@ -83,7 +85,6 @@
 		E610C36E225A1F680096F5A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E610C371225A1F680096F5A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E610C378225A1F690096F5A8 /* ExchangeRatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExchangeRatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E610C37C225A1F690096F5A8 /* ExchangeRatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesTests.swift; sourceTree = "<group>"; };
 		E610C37E225A1F690096F5A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E610C388225A20140096F5A8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E610C38B225A20F90096F5A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -114,6 +115,10 @@
 		E63F7871225B862200E87AF3 /* CurrencySelectorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencySelectorCell.xib; sourceTree = "<group>"; };
 		E63F7873225B8B9100E87AF3 /* AddCurrencyPairFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyPairFlow.swift; sourceTree = "<group>"; };
 		E6725809225E88DA00DFC261 /* Currency+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Currency+Image.swift"; sourceTree = "<group>"; };
+		E68EE2D5226246D300FB28AC /* ExchangeRatesTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExchangeRatesTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		E68EE2D6226246D300FB28AC /* ISOCurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOCurrencyTests.swift; sourceTree = "<group>"; };
+		E68EE2D822624A4400FB28AC /* CurrencyPairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairTests.swift; sourceTree = "<group>"; };
+		E68EE2DF2262633F00FB28AC /* UserDefaultsStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorageTests.swift; sourceTree = "<group>"; };
 		E6969543225C8A5C00F21B83 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		E6969545225CA2E200F21B83 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E6969547225CA83700F21B83 /* ExchangeRateListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateListCoordinator.swift; sourceTree = "<group>"; };
@@ -178,8 +183,10 @@
 		E610C389225A20140096F5A8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E610C37C225A1F690096F5A8 /* ExchangeRatesTests.swift */,
+				E68EE2D42262466600FB28AC /* Core */,
+				E68EE2D32262466600FB28AC /* App */,
 				E610C37E225A1F690096F5A8 /* Info.plist */,
+				E68EE2D5226246D300FB28AC /* ExchangeRatesTests-Bridging-Header.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -317,6 +324,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E68EE2D32262466600FB28AC /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E68EE2D6226246D300FB28AC /* ISOCurrencyTests.swift */,
+				E68EE2D822624A4400FB28AC /* CurrencyPairTests.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E68EE2D42262466600FB28AC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E68EE2DF2262633F00FB28AC /* UserDefaultsStorageTests.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -371,6 +395,7 @@
 					};
 					E610C377225A1F690096F5A8 = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 						TestTargetID = E610C363225A1F660096F5A8;
 					};
 					E610C38E225A24FD0096F5A8 = {
@@ -482,7 +507,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E610C37D225A1F690096F5A8 /* ExchangeRatesTests.swift in Sources */,
+				E68EE2D922624A4400FB28AC /* CurrencyPairTests.swift in Sources */,
+				E68EE2D7226246D300FB28AC /* ISOCurrencyTests.swift in Sources */,
+				E68EE2E02262633F00FB28AC /* UserDefaultsStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,6 +703,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MUQLCT9R7S;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -686,6 +714,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.revolut.ExchangeRatesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/ExchangeRatesTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExchangeRates.app/ExchangeRates";
@@ -697,6 +727,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MUQLCT9R7S;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -707,6 +738,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.revolut.ExchangeRatesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/ExchangeRatesTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExchangeRates.app/ExchangeRates";

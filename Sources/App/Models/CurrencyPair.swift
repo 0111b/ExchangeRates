@@ -12,7 +12,7 @@ struct CurrencyPair {
     let first: Currency
     let second: Currency
 
-    var rawValue: String { return first.code.appending(second.code) }
+    var rawValue: String { return first.code.appending(second.code).uppercased() }
 }
 
 extension CurrencyPair {

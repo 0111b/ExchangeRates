@@ -62,7 +62,7 @@ enum CurrencyFactory {
             let localeIdentifier = "\(Locale.current.identifier)@currency=\(rawCode)"
             let locale = Locale(identifier: Locale.canonicalIdentifier(from: localeIdentifier))
             guard let currencyCode = locale.currencyCode else { throw Error.invalidCode(rawCode) }
-            code = currencyCode
+            code = currencyCode.uppercased()
             symbol = locale.currencySymbol
             name = locale.localizedString(forCurrencyCode: currencyCode)
         }
