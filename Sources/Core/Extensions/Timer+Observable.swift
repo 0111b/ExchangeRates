@@ -10,6 +10,7 @@ import Foundation
 
 extension Timer {
     static func schedule(interval: TimeInterval) -> Observable<Void> {
+        assert(interval > 0, "Invalid interval")
         var shouldInvalidateTimer = false
         let observable = MutableObservable<Void>(value: ()) {
             shouldInvalidateTimer = true

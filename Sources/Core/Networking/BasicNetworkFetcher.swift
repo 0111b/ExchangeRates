@@ -12,13 +12,18 @@ import os.signpost
 
 final class BasicNetworkFetcher: NetworkDataFetcher {
 
-    init(configuration: URLSessionConfiguration = .default,
+    convenience init(configuration: URLSessionConfiguration = .default,
+                     completionQueue: DispatchQueue = .main) {
+        self.init(session: URLSession(configuration: configuration), completionQueue: completionQueue)
+    }
+    
+    init(session: URLSessionProtocol,
          completionQueue: DispatchQueue = .main) {
-        session = URLSession(configuration: configuration)
+        self.session = session
         self.completionQueue = completionQueue
     }
 
-    private let session: URLSession
+    private let session: URLSessionProtocol
     private lazy var processingQueue = DispatchQueue(label: "com.revolut.BasicNetworkFetcher.processing",
                                                      qos: .userInitiated,
                                                      attributes: .concurrent)
@@ -62,7 +67,7 @@ final class BasicNetworkFetcher: NetworkDataFetcher {
                 done(result)
             }
         }
-        let task = session.dataTask(with: request, completionHandler: requestCompletion)
+        let task = session.makeDataTask(with: request, completionHandler: requestCompletion)
         os_signpost(.begin, log: Log.networking, name: "Execute request", signpostID: signpostId, "Start request")
         os_log(.debug, log: Log.networking, "Request URL: %@", request.url?.absoluteString ?? "")
         task.resume()
@@ -71,3 +76,19 @@ final class BasicNetworkFetcher: NetworkDataFetcher {
         }
     }
 }
+
+protocol URLSessionProtocol {
+    func makeDataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol
+}
+
+protocol URLSessionDataTaskProtocol {
+    func resume()
+    func cancel()
+}
+
+extension URLSession: URLSessionProtocol {
+    func makeDataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol {
+        return self.dataTask(with: request, completionHandler: completionHandler)
+    }
+}
+extension URLSessionDataTask: URLSessionDataTaskProtocol {}
