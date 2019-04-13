@@ -44,3 +44,7 @@ vendor/
 Gemfile.lock
 .DS_Store
 .idea/
+
+#Tests
+
+Tests/*/*.swift.plist

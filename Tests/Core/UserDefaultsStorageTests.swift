@@ -25,5 +25,38 @@ class UserDefaultsStorageTests: XCTestCase {
         super.tearDown()
     }
 
+    func testWtite() {
+        func write<Value: Codable>(_ value: Value, key: String) {
+            XCTAssertNil(userDefaults.object(forKey: key))
+            storage.set(value, for: key)
+            XCTAssertNotNil(userDefaults.object(forKey: key))
+        }
+        write(42, key: "Int")
+        write(3.14, key: "Float")
+        write("Helo", key: "String")
+        write([1, 2, 3], key: "Array")
+        write(["foo": "bar"], key: "Dictionary")
+    }
+    
+    func testDefaultValue() {
+        let key = "something"
+        XCTAssertNil(userDefaults.object(forKey: key))
+        XCTAssertEqual("Value", storage.get(for: key, default: "Value"))
+    }
+    
+    func testWriteRead() {
+        let key = "something"
+        let value = "Value"
+        XCTAssertNil(userDefaults.object(forKey: key))
+        storage.set(value, for: key)
+        XCTAssertEqual(value, storage.get(for: key, default: "Other value"))
+    }
+    
+    func testInvalidDataToDefault() {
+        let key = "something"
+        XCTAssertNil(userDefaults.object(forKey: key))
+        userDefaults.setValue("Hello", forKeyPath: key)
+        XCTAssertEqual(42, storage.get(for: key, default: 42))
+    }
 
 }

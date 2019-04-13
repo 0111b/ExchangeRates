@@ -40,7 +40,7 @@ class ISOCurrencyTests: XCTestCase {
                 guard case CurrencyFactory.Error.invalidCode(let wrongCode) = error, wrongCode == code else {
                     return XCTFail("Invalid error \(error)")
                 }
-            }            
+            }
         }
     }
 }
