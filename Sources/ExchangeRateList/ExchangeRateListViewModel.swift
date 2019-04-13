@@ -96,8 +96,8 @@ final class ExchangeRateListViewModel {
                 notificationCenter.removeObserver(token)
             }.disposed(by: self.disposeBag)
         }
-        register(UIApplication.willResignActiveNotification, self.stopTimer)
-        register(UIApplication.didBecomeActiveNotification, self.startTimer)
+        register(UIApplication.willResignActiveNotification) { [unowned self] in self.stopTimer() }
+        register(UIApplication.didBecomeActiveNotification) { [unowned self] in self.startTimer() }
     }
 
     // MARK: Timer
