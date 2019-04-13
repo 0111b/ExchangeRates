@@ -8,3 +8,4 @@ The sample app
  snapshot testing
 
 # Requirements
+- optional swiftlint
