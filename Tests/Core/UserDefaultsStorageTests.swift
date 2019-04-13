@@ -59,4 +59,18 @@ class UserDefaultsStorageTests: XCTestCase {
         XCTAssertEqual(42, storage.get(for: key, default: 42))
     }
 
+    func testInvalidFormatToDefault() {
+        let key = "something"
+        XCTAssertNil(userDefaults.object(forKey: key))
+        struct DataTypeV1: Codable {
+            let data: String
+        }
+        struct DataTypeV2: Codable, Equatable {
+            let data: Int
+        }
+        let version1 = DataTypeV1(data: "V1")
+        storage.set(version1, for: key)
+        let version2 = DataTypeV2(data: 42)
+        XCTAssertEqual(storage.get(for: key, default: version2), version2)
+    }
 }
