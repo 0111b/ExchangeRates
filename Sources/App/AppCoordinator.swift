@@ -19,6 +19,9 @@ final class AppCoordinator {
         window.rootViewController = mainNavigation
         listCoordinator.start()
         window.makeKeyAndVisible()
+        if ApplicationConfig.current.isAnimationsDisabled {
+            window.layer.speed = 100
+        }
     }
 
     private unowned let window: UIWindow

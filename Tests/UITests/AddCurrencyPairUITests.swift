@@ -15,6 +15,7 @@ class AddCurrencyPairUITests: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         app = XCUIApplication()
+        app.launchEnvironment["ANIMATIONS_DISABLED"] = "YES"
     }
     
     override func tearDown() {

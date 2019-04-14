@@ -9,3 +9,5 @@ The sample app
 
 # Requirements
 - optional swiftlint
+
+snapshot testing

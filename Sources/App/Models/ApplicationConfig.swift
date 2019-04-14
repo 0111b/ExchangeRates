@@ -36,6 +36,13 @@ enum ApplicationConfig {
             .map { ($0 as NSString).boolValue }
         return envValue ?? true
     }
+    
+    var isAnimationsDisabled: Bool {
+        let envValue = ProcessInfo.processInfo
+            .environment["ANIMATIONS_DISABLED"]
+            .map { ($0 as NSString).boolValue }
+        return envValue ?? false
+    }
 }
 
 protocol NetworkConfig {
