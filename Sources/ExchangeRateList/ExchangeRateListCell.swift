@@ -58,5 +58,6 @@ extension ExchangeRateListCell: ConfigurableCell {
         }
         self.accessibilityLabel = Localized(format: "ExchangeRateList.AccessibilityLabel",
                                             accesibilityName(rate.source), rate.rate, accesibilityName(rate.destination))
+        self.accessibilityIdentifier = rate.currencies.rawValue
     }
 }

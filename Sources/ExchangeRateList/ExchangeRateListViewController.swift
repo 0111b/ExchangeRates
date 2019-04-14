@@ -43,6 +43,7 @@ final class ExchangeRateListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = dataSource
         setupConstraints()
+        setupAccessibility()
         bind()
         tableView.flashScrollIndicators()
     }
@@ -144,6 +145,16 @@ final class ExchangeRateListViewController: UIViewController {
             guide.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             guide.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
+    }
+    
+    private func setupAccessibility() {
+        view.accessibilityIdentifier = "ExchangeRatesScreen"
+        editBarButtonItem.accessibilityIdentifier = "editButton"
+        doneBarButtonItem.accessibilityIdentifier = "doneButton"
+        addBarButtonItem.accessibilityIdentifier = "addButton"
+        errorView.accessibilityIdentifier = "errorView"
+        emptyHintView.accessibilityIdentifier = "emptyHintView"
+        tableView.accessibilityIdentifier = "ratesList"
     }
 
     private lazy var contentView: UIStackView = {
