@@ -34,7 +34,25 @@ class ObservableTests: XCTestCase {
         observable.value = 2
         XCTAssertEqual(collector.values, [1, 2])
     }
-
+    
+    func testDisposeBag() {
+        let bag = DisposeBag()
+        var wasDisposed = false
+        let observable = MutableObservable<Int>(value: 0) {
+            wasDisposed = true
+        }
+        observable.observe { _ in }.disposed(by: bag)
+        bag.dispose()
+        XCTAssertTrue(wasDisposed)
+    }
+    
+    func testDisposeDestructor() {
+        var wasDisposed = false
+        _ = MutableObservable<Int>(value: 0) {
+            wasDisposed = true
+        }
+        XCTAssertTrue(wasDisposed)
+    }
 }
 
 final class ObservableCollector<Value> {
