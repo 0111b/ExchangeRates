@@ -19,6 +19,14 @@ enum ApplicationConfig {
             return URL(staticString: "https://europe-west1-revolut-230009.cloudfunctions.net")
         }
     }
+    
+    var startSelectedPairs: [CurrencyPair]? {
+        guard let rawPairs = ProcessInfo.processInfo.environment["SELECTED_PAIRS"] else { return nil }
+        let selectedPairs = rawPairs.split(separator: ",")
+            .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
+            .compactMap { try? CurrencyPair(rawValue: $0) }
+        return selectedPairs.isEmpty ? [] : selectedPairs
+    }
 }
 
 protocol NetworkConfig {

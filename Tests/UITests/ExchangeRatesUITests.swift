@@ -10,34 +10,41 @@ import XCTest
 
 class ExchangeRatesUITests: XCTestCase {
 
+    var app: XCUIApplication!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+    
+        
     }
 
     override func tearDown() {
         super.tearDown()
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+    }
+    
+    func testEditStateSwitch() {
+        app.launchEnvironment["SELECTED_PAIRS"] = "USDRUB, RUBUSD"
+        app.launch()
+        let screen = app.exchangreRateScreen
+        screen.editButton.tap()
+        
+        screen.doneButton.tap()
     }
 
     func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        app.launchEnvironment["SELECTED_PAIRS"] = ""
+        app.launch()
         
-        let exchangeRatesNavigationBar = XCUIApplication().navigationBars["Exchange rates"]
-        exchangeRatesNavigationBar.buttons["Edit"].tap()
+        let app = XCUIApplication()
+        app.staticTexts["Add a currency pair to compare their live rates"].tap()
+        app.navigationBars["Exchange rates"].buttons["Add"].tap()
         
-        let doneButton = exchangeRatesNavigationBar.buttons["Done"]
-        doneButton.tap()
-
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Brazilian Real"]/*[[".cells[\"Brazilian Real\"].staticTexts[\"Brazilian Real\"]",".staticTexts[\"Brazilian Real\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Chinese Yuan"]/*[[".cells[\"Chinese Yuan\"].staticTexts[\"Chinese Yuan\"]",".staticTexts[\"Chinese Yuan\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
     }
 

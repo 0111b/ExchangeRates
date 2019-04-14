@@ -34,6 +34,13 @@ class UserPreferencesTests: XCTestCase {
         preferences.selectedPairs.value = [pair]
         self.wait(for: [writeExpectation], timeout: 1)
     }
+    
+    func testStartPairsOverwrite() {
+        let storage = Storage()
+        let pair = try! CurrencyPair(rawValue: "USDRUB")
+        let preferences = UserPreferences(storage: storage, selectedPairs: [pair])
+        XCTAssertEqual(preferences.selectedPairs.value, [pair])
+    }
 }
 
 private class Storage: KeyValueStorage {

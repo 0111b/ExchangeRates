@@ -9,8 +9,9 @@
 import Foundation
 
 final class UserPreferences {
-    init(storage: KeyValueStorage) {
+    init(storage: KeyValueStorage, selectedPairs: [CurrencyPair]? = nil) {
         self.storage = storage
+        startSelectedPairs = selectedPairs
     }
 
     var refreshInterval: TimeInterval {
@@ -29,7 +30,7 @@ final class UserPreferences {
     // MARK: - Private interface -
 
     private func makeSelectedPairs() -> MutableObservable<[CurrencyPair]> {
-        let pairs: [CurrencyPair] = self.get(for: .selectedCurrencyPairs, default: [])
+        let pairs: [CurrencyPair] = startSelectedPairs ?? self.get(for: .selectedCurrencyPairs, default: [])
         let observable = MutableObservable<[CurrencyPair]>(value: pairs)
         self.selectedPairsObservation = observable
             .observe(skipCurrent: true) { [unowned self] pairs in
@@ -39,6 +40,7 @@ final class UserPreferences {
     }
 
     private let storage: KeyValueStorage
+    private let startSelectedPairs: [CurrencyPair]?
     private var selectedPairsObservation = Disposable.empty
 
     private lazy var syncQueue = DispatchQueue(label: "com.revolut.UserPreferences.sync",
