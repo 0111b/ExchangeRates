@@ -25,6 +25,7 @@ class AppCoordinatorTests: XCTestCase {
         let coordinator = AppCoordinator(mainWindow: window)
         coordinator.start()
         XCTAssertTrue(window.makeKeyAndVisibleCalled)
+        XCTAssertNotNil(window.rootViewController)
     }
 }
 
