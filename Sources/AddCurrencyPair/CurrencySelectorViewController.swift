@@ -62,7 +62,6 @@ final class CurrencySelectorViewController: UITableViewController {
     }
     
     private func setupAccessibility() {
-        view.accessibilityIdentifier = "CurrencySelectorScreen"
-        tableView.accessibilityIdentifier = "currencyList"
+        tableView.accessibilityIdentifier = "CurrencySelectorScreen"
     }
 }

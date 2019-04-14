@@ -15,7 +15,7 @@ extension XCUIApplication {
 struct ExchangreRateScreen {
     let app: XCUIApplication
     
-    var exists: Bool { return app.otherElements["ExchangeRatesScreen"].exists }
+    var exists: Bool { return app.otherElements["ExchangeRatesScreen"].waitForExistence(timeout: 1) }
 
     var navigationBar: XCUIElement { return app.navigationBars["Exchange rates"] }
     var doneButton: XCUIElement { return navigationBar.buttons["doneButton"] }

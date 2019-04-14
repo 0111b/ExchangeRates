@@ -25,9 +25,9 @@ extension ExchangreRateScreen {
 struct CurrencySelectorScreen {
     let app: XCUIApplication
     
-    var exists: Bool { return app.otherElements["ExchangeRatesScreen"].exists }
+    var exists: Bool { return currencyList.waitForExistence(timeout: 1) }
 
-    var currencyList: XCUIElement { return app.tables["currencyList"] }
+    var currencyList: XCUIElement { return app.tables["CurrencySelectorScreen"] }
     
     func currencyCell(_ identifier: String) -> XCUIElement {
         return currencyList.cells[identifier]
