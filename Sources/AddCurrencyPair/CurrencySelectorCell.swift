@@ -21,5 +21,6 @@ final class CurrencySelectorCell: UITableViewCell, NibReusableCell {
         self.accessoryType = enabled ? .disclosureIndicator : .none
         self.selectionStyle = enabled ? .gray : .none
         self.accessibilityLabel = currency.name ?? currency.code
+        self.accessibilityIdentifier = currency.code
     }
 }

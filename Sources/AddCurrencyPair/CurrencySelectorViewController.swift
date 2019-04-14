@@ -29,6 +29,7 @@ final class CurrencySelectorViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         tableView.register(cell: CurrencySelectorCell.self)
+        setupAccessibility()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,5 +59,10 @@ final class CurrencySelectorViewController: UITableViewController {
 
     private func canSelect(_ item: Currency) -> Bool {
         return !disabledCodes.contains(item.code)
+    }
+    
+    private func setupAccessibility() {
+        view.accessibilityIdentifier = "CurrencySelectorScreen"
+        tableView.accessibilityIdentifier = "currencyList"
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ExchangeRatesUITests.swift
+//  ExchangeRateListUITests.swift
 //  ExchangeRatesUITests
 //
 //  Created by Alexandr Goncharov on 14/04/2019.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class ExchangeRatesUITests: XCTestCase {
+class ExchangeRateListUITests: XCTestCase {
 
     var app: XCUIApplication!
     
@@ -82,7 +82,7 @@ class ExchangeRatesUITests: XCTestCase {
         XCTAssertFalse(screen.rateCell("USDRUB").exists)
     }
 
-    func testExample() {
+    func testError() {
         app.launchEnvironment["SELECTED_PAIRS"] = ""
         app.launch()
 //
