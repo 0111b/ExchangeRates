@@ -103,9 +103,13 @@ final class ExchangeRateListViewModel {
     // MARK: Timer
     private let refreshInterval: TimeInterval
     private var refreshTimer = Disposable.empty
+    
+    var isTimerStarted: Bool { return !refreshTimer.isEmpty }
 
     private func startTimer() {
-        guard refreshTimer.isEmpty else { return }
+        guard !isTimerStarted // not started
+            && refreshInterval > 0 // correct interval
+            else { return }
         os_log(.info, log: Log.general, "Start refresh timer")
         refreshTimer = Timer.schedule(interval: refreshInterval).observe(on: .main) { [unowned self] in
             self.fetchRates()

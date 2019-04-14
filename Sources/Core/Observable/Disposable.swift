@@ -45,4 +45,6 @@ final class DisposeBag {
     func dispose() {
         disposables = []
     }
+    
+    var isEmpty: Bool { return disposables.isEmpty }
 }
