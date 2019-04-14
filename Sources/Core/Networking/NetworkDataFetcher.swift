@@ -42,3 +42,10 @@ extension NetworkDataFetcher {
             return execute(request: request, configure: configure, transform: transform, completion: completion)
     }
 }
+
+final class DisabledNetworkFetcher: NetworkDataFetcher {
+    func execute<FetchResult>(request: URLRequest, decode: @escaping (Data) throws -> FetchResult, completion: @escaping (Result<FetchResult, DataFetchError>) -> Void) -> Disposable {
+        completion(.failure(.invalidRequest))
+        return Disposable.empty
+    }
+}

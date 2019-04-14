@@ -20,12 +20,21 @@ enum ApplicationConfig {
         }
     }
     
+    // MARK: - Process env -
+    
     var startSelectedPairs: [CurrencyPair]? {
-        guard let rawPairs = ProcessInfo.processInfo.environment["SELECTED_PAIRS"] else { return nil }
-        let selectedPairs = rawPairs.split(separator: ",")
+        return ProcessInfo.processInfo
+            .environment["SELECTED_PAIRS"]?
+            .split(separator: ",")
             .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
             .compactMap { try? CurrencyPair(rawValue: $0) }
-        return selectedPairs.isEmpty ? [] : selectedPairs
+    }
+    
+    var isNetworkingEnabled: Bool {
+        let envValue = ProcessInfo.processInfo
+            .environment["NETWORK_ENABLED"]
+            .map { ($0 as NSString).boolValue }
+        return envValue ?? true
     }
 }
 

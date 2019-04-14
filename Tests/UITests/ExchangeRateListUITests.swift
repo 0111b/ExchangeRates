@@ -82,17 +82,29 @@ class ExchangeRateListUITests: XCTestCase {
         XCTAssertFalse(screen.rateCell("USDRUB").exists)
     }
 
-    func testError() {
-        app.launchEnvironment["SELECTED_PAIRS"] = ""
+    func testErrorHiddenNormal() {
+        app.launchEnvironment["SELECTED_PAIRS"] = "USDRUB, RUBUSD"
         app.launch()
-//
-//        let reorderButton = app/*@START_MENU_TOKEN@*/.tables["ratesList"].buttons["Reorder 1 Danish Krone is equal to 0.56 Brazilian Real"]/*[[".otherElements[\"ExchangeRatesScreen\"].tables[\"ratesList\"]",".cells[\"1 Danish Krone is equal to 0.56 Brazilian Real\"].buttons[\"Reorder 1 Danish Krone is equal to 0.56 Brazilian Real\"]",".cells[\"DKKBRL\"].buttons[\"Reorder 1 Danish Krone is equal to 0.56 Brazilian Real\"]",".buttons[\"Reorder 1 Danish Krone is equal to 0.56 Brazilian Real\"]",".tables[\"ratesList\"]"],[[[-1,4,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/
-//        reorderButton/*@START_MENU_TOKEN@*/.press(forDuration: 0.8);/*[[".tap()",".press(forDuration: 0.8);"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-//        reorderButton.swipeDown()
-//        reorderButton.swipeUp()
-//        app/*@START_MENU_TOKEN@*/.tables["ratesList"].buttons["Reorder 1 Brazilian Real is equal to 0.36 Canadian Dollar"]/*[[".otherElements[\"ExchangeRatesScreen\"].tables[\"ratesList\"]",".cells[\"1 Brazilian Real is equal to 0.36 Canadian Dollar\"].buttons[\"Reorder 1 Brazilian Real is equal to 0.36 Canadian Dollar\"]",".cells[\"BRLCAD\"].buttons[\"Reorder 1 Brazilian Real is equal to 0.36 Canadian Dollar\"]",".buttons[\"Reorder 1 Brazilian Real is equal to 0.36 Canadian Dollar\"]",".tables[\"ratesList\"]"],[[[-1,4,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.swipeUp()
-//        exchangeRatesNavigationBar/*@START_MENU_TOKEN@*/.buttons["addButton"]/*[[".buttons[\"Add\"]",".buttons[\"addButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        
+        let screen = app.exchangreRateScreen
+        XCTAssertTrue(screen.exists)
+        XCTAssertFalse(screen.errorView.exists)
+    }
+    
+    func testErrorVisibleWithValues() {
+        app.launchEnvironment["SELECTED_PAIRS"] = "USDRUB, RUBUSD"
+        app.launchEnvironment["NETWORK_ENABLED"] = "NO"
+        app.launch()
+        let screen = app.exchangreRateScreen
+        XCTAssertTrue(screen.exists)
+        XCTAssertTrue(screen.errorView.exists)
     }
 
+    func testErrorHiddenOnEmpty() {
+        app.launchEnvironment["SELECTED_PAIRS"] = ""
+        app.launchEnvironment["NETWORK_ENABLED"] = "NO"
+        app.launch()
+        let screen = app.exchangreRateScreen
+        XCTAssertTrue(screen.exists)
+        XCTAssertFalse(screen.errorView.exists)
+    }
 }
