@@ -8,6 +8,17 @@
 
 import Foundation
 
+protocol NetworkConfig {
+    /// Base URL for all requests
+    var apiBaseURL: URL { get }
+    /// If `true` then causes error on every request
+    ///
+    /// Used in the UI tests
+    var isNetworkingEnabled: Bool { get }
+}
+
+extension ApplicationConfig: NetworkConfig {}
+
 enum ApplicationConfig {
     case develop
 
@@ -22,6 +33,20 @@ enum ApplicationConfig {
     
     // MARK: - Process env -
     
+    /// Increases all animations speed when set to `true`
+    ///
+    /// Used in the UI tests
+    var isAnimationsDisabled: Bool {
+        let envValue = ProcessInfo.processInfo
+            .environment["ANIMATIONS_DISABLED"]
+            .map { ($0 as NSString).boolValue }
+        return envValue ?? false
+    }
+    
+    /// Currency pairs available on startup
+    ///
+    /// If not `nill` then overwrites stored data
+    /// Used in the UI tests
     var startSelectedPairs: [CurrencyPair]? {
         return ProcessInfo.processInfo
             .environment["SELECTED_PAIRS"]?
@@ -36,17 +61,4 @@ enum ApplicationConfig {
             .map { ($0 as NSString).boolValue }
         return envValue ?? true
     }
-    
-    var isAnimationsDisabled: Bool {
-        let envValue = ProcessInfo.processInfo
-            .environment["ANIMATIONS_DISABLED"]
-            .map { ($0 as NSString).boolValue }
-        return envValue ?? false
-    }
 }
-
-protocol NetworkConfig {
-    var apiBaseURL: URL { get }
-}
-
-extension ApplicationConfig: NetworkConfig {}

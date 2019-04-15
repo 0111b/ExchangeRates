@@ -47,4 +47,4 @@ Gemfile.lock
 
 #Tests
 
-Tests/*/*.swift.plist
+Tests/**/*.swift.plist

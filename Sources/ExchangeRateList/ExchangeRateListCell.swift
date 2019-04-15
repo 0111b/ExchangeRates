@@ -24,8 +24,7 @@ final class ExchangeRateListCell: NibReusableTableViewCell {
                                                         .font: font,
                                                         .foregroundColor: textColor
             ])
-        if let imageRange = text.range(of: "<flag>"),
-           let image = currency.flagImage {
+        if let imageRange = text.range(of: "<flag>"), let image = currency.flagImage {
             let attatchment = NSTextAttachment()
             attatchment.image = image
             attatchment.bounds = CGRect(x: 0,
@@ -43,16 +42,12 @@ final class ExchangeRateListCell: NibReusableTableViewCell {
 extension ExchangeRateListCell: ConfigurableCell {
     func set(model rate: ExchangeRate) {
         sourceSymbolLabel?.text = rate.source.code
-        sourceDescriptionLabel.map { label in
-            label.attributedText = self.description(for: rate.source,
-                                                    format: "ExchangeRateList.Source.Description")
-        }
+        sourceDescriptionLabel?.attributedText = self.description(for: rate.source,
+                                                                  format: "ExchangeRateList.Source.Description")
         destinationValueLabel?.text = "\(rate.rate)"
         destinationSymbolLabel?.text = rate.destination.code
-        destinationDescriptionLabel.map { label in
-            label.attributedText = self.description(for: rate.destination,
-                                                    format: "ExchangeRateList.Destination.Description")
-        }
+        destinationDescriptionLabel?.attributedText = self.description(for: rate.destination,
+                                                                       format: "ExchangeRateList.Destination.Description")
         let accesibilityName: (Currency) -> String = {
             return $0.name ?? $0.code
         }

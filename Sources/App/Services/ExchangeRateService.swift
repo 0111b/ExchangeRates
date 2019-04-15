@@ -9,6 +9,12 @@
 import Foundation
 
 protocol ExchangeRateServiceProtocol {
+    /// Fetch exchange rate information for the given currency pairs
+    ///
+    /// - Parameters:
+    ///   - pairs: list of the currency pairs
+    ///   - completion: fetch result handler
+    /// - Returns: Cancelation token
     func getRates(for pairs: [CurrencyPair], completion: @escaping (Result<[ExchangeRate], DataFetchError>) -> Void) -> Disposable
 }
 
@@ -28,11 +34,13 @@ final class ExchangeRateService: ExchangeRateServiceProtocol {
             return Disposable.empty
         }
         let transform: ([String: ExchangeRate.Rate]) throws -> [ExchangeRate] = { rawDictionary in
+            // map raw strings to currency pairs
             let dictionary: [CurrencyPair: ExchangeRate.Rate] = try Dictionary(uniqueKeysWithValues: rawDictionary
                 .map { code, rate in
                     let pair = try CurrencyPair(rawValue: code)
                     return (pair, rate)
             })
+            // associate rate values with source pairs
             return pairs.map { pair in
                 let rate: ExchangeRate.Rate = dictionary[pair] ?? 0.0
                 return ExchangeRate(rate: rate, currencies: pair)

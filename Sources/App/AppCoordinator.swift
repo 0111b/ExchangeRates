@@ -25,7 +25,7 @@ final class AppCoordinator {
     }
 
     private unowned let window: UIWindow
-    private let mainNavigation = UINavigationController()
+    private lazy var mainNavigation = UINavigationController()
 
     private lazy var preferences: UserPreferences = {
         return UserPreferences(storage: UserDefaultsStorage(),

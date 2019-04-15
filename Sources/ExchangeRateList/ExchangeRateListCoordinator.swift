@@ -28,8 +28,9 @@ final class ExchangeRateListCoordinator {
     }
 
     private func makeListController() -> ExchangeRateListViewController {
-        let fetcher: NetworkDataFetcher = ApplicationConfig.current.isNetworkingEnabled ? BasicNetworkFetcher() : DisabledNetworkFetcher()
-        let service = ExchangeRateService(config: ApplicationConfig.current, fetcher: fetcher)
+        let config: NetworkConfig = ApplicationConfig.current
+        let fetcher: NetworkDataFetcher = config.isNetworkingEnabled ? BasicNetworkFetcher() : DisabledNetworkFetcher()
+        let service = ExchangeRateService(config: config, fetcher: fetcher)
         let viewModel = ExchangeRateListViewModel(pairs: preferences.selectedPairs,
                                                   refreshInterval: preferences.refreshInterval,
                                                   service: service)

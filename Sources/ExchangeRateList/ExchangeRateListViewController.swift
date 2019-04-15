@@ -126,7 +126,6 @@ final class ExchangeRateListViewController: UIViewController {
         tableView.setEditing(isEditing, animated: true)
         if isEditing {
             viewModel.didStartEditingList()
-            errorView.isHidden = true
         } else {
             viewModel.didStopEditingList()
         }

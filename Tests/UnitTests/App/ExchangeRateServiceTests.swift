@@ -156,5 +156,6 @@ class ExchangeRateServiceTests: XCTestCase {
 }
 
 private struct Config: NetworkConfig {
+    let isNetworkingEnabled: Bool = true
     var apiBaseURL: URL { return URL(staticString: "https://apple.com") }
 }

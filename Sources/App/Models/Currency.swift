@@ -20,14 +20,14 @@ protocol Currency: CustomStringConvertible {
 extension Currency {
     var description: String { return code }
 }
-/// Currencies namespace
+
 enum CurrencyFactory {
 
     /// Factory method for creating `Currency`
     ///
     /// - Parameter code: currency code
     /// - Returns: new currency instance
-    /// - Throws: `Currencies.Error.invalidCode`
+    /// - Throws: `CurrencyFactory.Error.invalidCode`
     static func make(from code: Currency.Code) throws -> Currency {
         switch code {
         // ISO currency
